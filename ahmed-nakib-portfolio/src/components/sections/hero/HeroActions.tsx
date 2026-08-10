@@ -16,6 +16,7 @@ export default function HeroActions() {
 
       <Link
         href={heroContent.secondaryAction.href}
+        download
         className="inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent"
       >
         <Download className="size-4" />

@@ -15,6 +15,6 @@ export const heroContent = {
 
   secondaryAction: {
     label: "Download Resume",
-    href: "/resume",
+    href: "/resume/Nakibul-Islam-Resume.pdf",
   },
 };

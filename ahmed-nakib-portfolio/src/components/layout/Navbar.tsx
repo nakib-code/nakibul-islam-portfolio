@@ -1,53 +1,78 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 import Container from "./Container";
 import MobileNav from "./MobileNav";
-import { navigationItems } from "@/data/navigation";
+
 import ThemeToggle from "@/components/shared/ThemeToggle";
 
+import { navigationItems } from "@/data/navigation";
+import useActiveSection from "@/hooks/useActiveSection";
+
 export default function Navbar() {
+  const activeSection = useActiveSection();
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <Container>
-        <nav className="flex h-16 items-center justify-between">
+        <nav className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link
-            href="/"
-            className="group font-heading text-xl font-bold tracking-tight"
+            href="#home"
+            className="font-heading text-2xl font-bold tracking-tight transition-colors hover:text-primary"
           >
-            Ahmed
-            <span className="text-primary transition-colors group-hover:text-primary/80">
-              .
-            </span>
+            Ahmed<span className="text-primary">.</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 md:flex">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navigationItems.map((item) => {
+              const isActive =
+                activeSection === item.href.replace("#", "");
 
-            {/* Theme */}
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`group relative rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-300 ${
+                    isActive
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+
+                  {isActive && (
+                    <motion.span
+                      layoutId="navbar-indicator"
+                      className="absolute -bottom-1 left-3 right-3 h-0.5 rounded-full bg-primary"
+                      transition={{
+                        type: "spring",
+                        stiffness: 350,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
+
             <div className="ml-2">
               <ThemeToggle />
             </div>
 
-            {/* Resume */}
             <Link
-              href="/resume"
-              className="ml-2 inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 hover:shadow-md"
-            >
-              Resume
-            </Link>
+  href="/resume/Nakibul-Islam-Resume.pdf"
+  target="_blank"
+  className="ml-2 inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+>
+  Resume
+</Link>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile */}
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <MobileNav />

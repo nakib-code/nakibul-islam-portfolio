@@ -5,17 +5,17 @@ import { Mail } from "lucide-react";
 const socialLinks = [
   {
     label: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/nakib-code/",
     icon: FaGithub,
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/in/nakibul/",
     icon: FaLinkedinIn,
   },
   {
     label: "Email",
-    href: "mailto:your@email.com",
+    href: "office.nakib@gmail.com",
     icon: Mail,
   },
 ];
