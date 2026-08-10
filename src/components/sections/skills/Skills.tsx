@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+
 
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -9,7 +11,7 @@ import { skillsContent } from "@/data/skills";
 
 import SkillCategory from "./SkillCategory";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -18,7 +20,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 40,

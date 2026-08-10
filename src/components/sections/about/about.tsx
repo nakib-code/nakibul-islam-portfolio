@@ -1,5 +1,5 @@
 "use client";
-
+import type { Variants } from "framer-motion";
 import { motion } from "framer-motion";
 
 import Container from "@/components/layout/Container";
@@ -9,7 +9,7 @@ import AboutContent from "./AboutContent";
 import AboutStats from "./AboutStats";
 import AboutVisual from "./AboutVisual";
 
-const leftVariant = {
+const leftVariant: Variants = {
   hidden: {
     opacity: 0,
     x: -50,
@@ -24,7 +24,7 @@ const leftVariant = {
   },
 };
 
-const rightVariant = {
+const rightVariant: Variants = {
   hidden: {
     opacity: 0,
     x: 50,

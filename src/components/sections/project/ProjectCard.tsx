@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion , type Variants} from "framer-motion";
 
 import ProjectFeatures from "./ProjectFeatures";
 import ProjectImage from "./ProjectImage";
@@ -17,7 +17,7 @@ interface ProjectCardProps {
   reverse?: boolean;
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 50,

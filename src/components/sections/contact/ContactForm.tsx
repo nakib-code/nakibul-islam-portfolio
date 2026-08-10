@@ -1,7 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { ArrowUpRight, Loader2, Send } from "lucide-react";
+import {Loader2, Send } from "lucide-react";
+
 import { motion } from "framer-motion";
 
 export default function ContactForm() {
