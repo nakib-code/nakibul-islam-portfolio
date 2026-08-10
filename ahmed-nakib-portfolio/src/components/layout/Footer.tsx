@@ -144,15 +144,6 @@ export default function Footer() {
               TypeScript
             </span>
           </div>
-
-          {/* Back To Top */}
-          <a
-            href="#"
-            aria-label="Back to top"
-            className="group flex size-9 items-center justify-center rounded-full border border-border bg-card/50 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
-          >
-            <ArrowUp className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
-          </a>
         </div>
       </div>
     </footer>

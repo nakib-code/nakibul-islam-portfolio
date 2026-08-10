@@ -5,6 +5,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import ScrollProgress from "@/components/shared/ScrollProgress";
+import BackToTop from "@/components/shared/BackToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -148,6 +149,7 @@ export default function RootLayout({
           <ScrollProgress />
 
           {children}
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>
