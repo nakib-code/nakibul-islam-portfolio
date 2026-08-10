@@ -131,7 +131,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
-            © {currentYear} Ahmed Nakib. All rights reserved.
+            © {currentYear} Nakibul Islam. All rights reserved.
           </p>
 
           <div className="flex items-center gap-2 text-xs text-muted-foreground">

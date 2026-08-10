@@ -73,7 +73,7 @@ export default function About() {
         <SectionHeading
           badge="About Me"
           title="Building scalable digital products with modern web technologies."
-          description="I'm Ahmed Nakib, a Full Stack Developer focused on building fast, scalable, and user-friendly web applications."
+          description="I'm Nakibul Islam, a Full Stack Developer focused on building fast, scalable, and user-friendly web applications."
         />
 
         {/* Main Content */}

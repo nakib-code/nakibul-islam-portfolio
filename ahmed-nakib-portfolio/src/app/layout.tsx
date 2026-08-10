@@ -1,23 +1,123 @@
 import type { Metadata } from "next";
+import "./globals.css";
+
 import { Inter, Space_Grotesk } from "next/font/google";
 
-import "./globals.css";
 import ThemeProvider from "@/components/providers/ThemeProvider";
+import ScrollProgress from "@/components/shared/ScrollProgress";
 
 const inter = Inter({
-  variable: "--font-inter",
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space",
   subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Ahmed Nakib | Full Stack Developer",
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+
+  name: "Nakibul Islam",
+
+  url: "https://your-domain.com",
+
+  image: "https://your-domain.com/images/profile.png",
+
+  jobTitle: "Full Stack Developer",
+
   description:
-    "Ahmed Nakib is a Full Stack Developer specializing in Next.js, React, TypeScript, Node.js, PostgreSQL, and MongoDB.",
+    "Full Stack Developer specializing in Next.js, React, TypeScript, Node.js, PostgreSQL and MongoDB.",
+
+  sameAs: [
+    "https://github.com/nakib-code",
+    "https://www.linkedin.com/in/nakibul/",
+  ],
+
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Express.js",
+    "PostgreSQL",
+    "MongoDB",
+    "Tailwind CSS",
+  ],
+};
+
+export const metadata: Metadata = {
+  title: {
+    default: "Nakibul Islam | Full Stack Developer",
+    template: "%s | Nakibul Islam",
+  },
+
+  description:
+    "Full Stack Developer specializing in Next.js, React, TypeScript, Node.js, PostgreSQL and MongoDB. Building modern, scalable web applications.",
+
+  keywords: [
+    "Nakibul Islam",
+    "Full Stack Developer",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "MongoDB",
+    "PostgreSQL",
+    "Portfolio",
+  ],
+
+  authors: [
+    {
+      name: "Nakibul Islam",
+    },
+  ],
+
+  creator: "Nakibul Islam",
+
+  metadataBase: new URL("https://your-domain.com"),
+
+  openGraph: {
+    title: "Nakibul Islam | Full Stack Developer",
+
+    description: "Modern Full Stack Developer Portfolio built with Next.js.",
+
+    url: "https://your-domain.com",
+
+    siteName: "Nakibul Islam Portfolio",
+
+    locale: "en_US",
+
+    type: "website",
+
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Nakibul Islam Portfolio",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title: "Nakibul Islam | Full Stack Developer",
+
+    description: "Modern Full Stack Developer Portfolio built with Next.js.",
+
+    images: ["/og-image.png"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -31,13 +131,22 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="min-h-full">
+      <body className="min-h-screen bg-background font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
+          <ScrollProgress />
+
           {children}
         </ThemeProvider>
       </body>

@@ -1,7 +1,7 @@
 export const heroContent = {
   badge: "Available for opportunities",
 
-  greeting: "Hi, I'm Ahmed Nakib",
+  greeting: "Hi, I'm Nakibul Islam",
 
   title: "Full Stack Developer",
 

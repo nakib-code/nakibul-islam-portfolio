@@ -40,7 +40,7 @@ export default function HeroVisual() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
             <Image
               src="/images/profile.png"
-              alt="Ahmed Nakib - Full Stack Developer"
+              alt="Nakibul Islam - Full Stack Developer"
               fill
               priority
               sizes="(max-width:768px) 90vw, 420px"
@@ -53,7 +53,7 @@ export default function HeroVisual() {
             {/* Info */}
             <div className="absolute bottom-5 left-5">
               <h3 className="text-xl font-bold text-white">
-                Ahmed Nakib
+                Nakibul Islam
               </h3>
 
               <p className="mt-1 text-sm text-white/80">
