@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "services": "Services",
+    "contact": "Contact",
+    "websiteStore": "Website Store",
+    "resume": "View Resume"
+  },
+
+  "hero": {
+    "badge": "Available for opportunities",
+    "greeting": "Hi, I'm Nakibul Islam",
+    "title": "Full Stack Developer",
+    "description": "I build modern, scalable, and user-focused web applications with Next.js, React, TypeScript, and Node.js.",
+    "viewProjects": "View Projects",
+    "downloadResume": "Download Resume",
+    "availableForWork": "Available for Work"
+  },
+
+  "about": {
+    "badge": "About Me",
+    "title": "Building scalable digital products with modern web technologies.",
+    "description": "I'm Nakibul Islam, a Full Stack Developer focused on building fast, scalable, and user-friendly web applications.",
+
+    "story": "I'm Nakibul Islam, a Full Stack Developer passionate about building fast, scalable, and user-friendly web applications. I enjoy transforming ideas into production-ready digital products using modern technologies and clean architecture.",
+
+    "mission": "My goal is to build high-quality software that delivers exceptional user experiences while following modern engineering best practices.",
+
+    "location": "Bangladesh",
+    "availability": "Available for Work",
+    "workType": "Remote • Freelance • Full-Time",
+
+    "focusTitle": "What I Focus On",
+
+    "focus": [
+      "Scalable Web Applications",
+      "Clean Architecture",
+      "REST API Development",
+      "Performance Optimization"
+    ],
+
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+
+    "footer": "Building scalable, modern and production-ready web applications with clean architecture and exceptional user experience.",
+
+    "stats": {
+      "projectsBuilt": "Projects Built",
+      "development": "Development",
+      "toWork": "To Work",
+      "architecture": "Architecture",
+      "fullStack": "Full Stack",
+      "open": "Open",
+      "clean": "Clean"
+    }
+  },
+
+  "services": {
+    "badge": "Services",
+    "title": "Solutions built around your business needs.",
+    "description": "I help businesses and individuals build modern, scalable, and user-friendly web applications with the right technologies."
+  }
+}
