@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 interface ProjectStatusProps {
   status: "Production Ready" | "In Progress";
 }
@@ -7,14 +9,17 @@ interface ProjectStatusProps {
 export default function ProjectStatus({
   status,
 }: ProjectStatusProps) {
-  const production = status === "Production Ready";
+  const { t } = useTranslation("common");
+
+  const production =
+    status === "Production Ready";
 
   return (
     <span
       className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
         production
-          ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
-          : "bg-amber-500/10 text-amber-500 border border-amber-500/20"
+          ? "border border-emerald-500/20 bg-emerald-500/10 text-emerald-500"
+          : "border border-amber-500/20 bg-amber-500/10 text-amber-500"
       }`}
     >
       <span
@@ -25,7 +30,11 @@ export default function ProjectStatus({
         }`}
       />
 
-      {status}
+      {t(
+        production
+          ? "projects.status.production"
+          : "projects.status.progress"
+      )}
     </span>
   );
 }

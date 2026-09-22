@@ -74,7 +74,105 @@
   "fullStackDevelopment": "ফুল স্ট্যাক ডেভেলপমেন্ট",
   "fullStackDevelopmentDescription": "Frontend, backend, database, authentication এবং deployment workflow নিয়ে কাজ করার অভিজ্ঞতা রয়েছে।"
 },
+"skills": {
+  "badge": "দক্ষতা",
+  "title": "আমার টেকনিক্যাল স্কিল ও ডেভেলপমেন্ট স্ট্যাক।",
+  "description": "একটি ইন্টার‌্যাক্টিভ টার্মিনালের মাধ্যমে আমার টেকনোলজি স্ট্যাক দেখুন। একটি ক্যাটাগরি নির্বাচন করে আমি যেসব প্রযুক্তি নিয়ে কাজ করি সেগুলো দেখুন।",
 
+  "categories": {
+    "frontend": "ফ্রন্টএন্ড",
+    "backend": "ব্যাকএন্ড",
+    "database": "ডেটাবেস",
+    "tools": "টুলস"
+  },
+
+  "terminal": {
+    "systemStatus": "সিস্টেম স্ট্যাটাস",
+    "online": "অনলাইন",
+    "commands": "কমান্ড",
+    "skillsLoaded": "লোড হওয়া স্কিল",
+    "commandMatrix": "কমান্ড নির্বাচন করুন",
+    "clear": "ক্লিয়ার",
+    "typewriterFrequency": "টাইপরাইটার গতি",
+    "wipe": "টার্মিনাল ক্লিয়ার করুন",
+
+    "react": "• React.js       : component-based UI development",
+    "nextjs": "• Next.js        : production React framework",
+    "typescript": "• TypeScript     : type-safe JavaScript development",
+    "javascript": "• JavaScript     : modern ES6+ development",
+    "tailwind": "• Tailwind CSS   : utility-first styling",
+    "shadcn": "• Shadcn UI      : reusable UI components",
+
+    "nodejs": "• Node.js        : server-side JavaScript runtime",
+    "express": "• Express.js     : REST API development",
+    "restApi": "• REST API       : scalable API architecture",
+    "jwt": "• JWT            : authentication & authorization",
+    "zod": "• Zod            : schema validation",
+
+    "postgresql": "• PostgreSQL     : relational database",
+    "mongodb": "• MongoDB        : NoSQL database",
+    "prisma": "• Prisma         : type-safe ORM",
+    "neon": "• Neon           : serverless PostgreSQL",
+
+    "git": "• Git            : version control",
+    "github": "• GitHub         : source code management",
+    "docker": "• Docker         : containerization",
+    "vercel": "• Vercel         : deployment platform",
+    "postman": "• Postman         : API testing",
+    "figma": "• Figma          : UI design"
+  }
+},
+"projects": {
+  "badge": "নির্বাচিত প্রজেক্ট",
+  "title": "আমি তৈরি করা production-ready অ্যাপ্লিকেশন।",
+  "description": "Full-stack development, clean architecture, authentication, dashboard এবং modern UI নিয়ে আমার অভিজ্ঞতার কিছু উল্লেখযোগ্য প্রজেক্ট।",
+
+  "caseStudy": "কেস স্টাডি",
+  "overview": "সংক্ষিপ্ত বিবরণ",
+  "technologies": "টেকনোলজি",
+  "keyFeatures": "মূল ফিচার",
+  "liveDemo": "লাইভ ডেমো",
+  "github": "GitHub",
+  "viewCaseStudy": "কেস স্টাডি দেখুন",
+  "closeCaseStudy": "প্রজেক্ট কেস স্টাডি বন্ধ করুন",
+  "previousImage": "আগের প্রজেক্ট ছবি",
+  "nextImage": "পরের প্রজেক্ট ছবি",
+  "viewImage": "প্রজেক্ট ছবি দেখুন",
+  "viewCaseStudyAria": "{{title}} কেস স্টাডি দেখুন",
+
+  "status": {
+    "production": "Production Ready",
+    "progress": "চলমান"
+  },
+
+  "items": {
+    "nakivo": {
+      "title": "Nakivo",
+      "shortDescription": "আধুনিক ফুল স্ট্যাক ই-কমার্স প্ল্যাটফর্ম",
+      "description": "Next.js App Router দিয়ে তৈরি একটি স্কেলযোগ্য ই-কমার্স অ্যাপ্লিকেশন, যেখানে authentication, admin dashboard, product management এবং responsive design রয়েছে।",
+
+      "features": [
+        "Authentication",
+        "Admin Dashboard",
+        "Product Management",
+        "Responsive UI"
+      ]
+    },
+
+    "fixitnow": {
+      "title": "FixItNow",
+      "shortDescription": "হোম সার্ভিস মার্কেটপ্লেস",
+      "description": "Customer এবং technician-দের সংযুক্ত করার জন্য তৈরি একটি full-stack marketplace, যেখানে booking, payment, dashboard এবং role-based authentication রয়েছে।",
+
+      "features": [
+        "Booking System",
+        "SSLCommerz Payment",
+        "Role Based Dashboard",
+        "Reviews"
+      ]
+    }
+  }
+},
   "services": {
     "badge": "সেবাসমূহ",
     "title": "আপনার ব্যবসার প্রয়োজন অনুযায়ী তৈরি সমাধান।",

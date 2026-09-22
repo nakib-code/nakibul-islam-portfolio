@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion , type Variants} from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import ProjectFeatures from "./ProjectFeatures";
 import ProjectImage from "./ProjectImage";
@@ -10,7 +11,7 @@ import ProjectModal from "./ProjectModal";
 import ProjectStatus from "./ProjectStatus";
 import ProjectTechStack from "./ProjectTechStack";
 
-import { Project } from "@/type/project";
+import type { Project } from "@/type/project";
 
 interface ProjectCardProps {
   project: Project;
@@ -22,9 +23,11 @@ const cardVariants: Variants = {
     opacity: 0,
     y: 50,
   },
+
   visible: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.7,
       ease: "easeOut",
@@ -36,7 +39,11 @@ export default function ProjectCard({
   project,
   reverse = false,
 }: ProjectCardProps) {
+  const { t } = useTranslation("common");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const projectKey = project.key;
 
   return (
     <>
@@ -59,7 +66,9 @@ export default function ProjectCard({
         {/* Project Image */}
         <ProjectImage
           images={project.images}
-          title={project.title}
+          title={t(
+            `projects.items.${projectKey}.title`,
+          )}
           onViewCaseStudy={() => setIsModalOpen(true)}
         />
 
@@ -68,20 +77,31 @@ export default function ProjectCard({
           <ProjectStatus status={project.status} />
 
           <h3 className="mt-6 font-heading text-4xl font-bold tracking-tight">
-            {project.title}
+            {t(
+              `projects.items.${projectKey}.title`,
+            )}
           </h3>
 
           <p className="mt-3 text-lg font-medium text-primary">
-            {project.shortDescription}
+            {t(
+              `projects.items.${projectKey}.shortDescription`,
+            )}
           </p>
 
           <p className="mt-6 leading-8 text-muted-foreground">
-            {project.description}
+            {t(
+              `projects.items.${projectKey}.description`,
+            )}
           </p>
 
-          <ProjectTechStack technologies={project.technologies} />
+          <ProjectTechStack
+            technologies={project.technologies}
+          />
 
-          <ProjectFeatures features={project.features} />
+          <ProjectFeatures
+            features={project.features}
+            projectKey={projectKey}
+          />
 
           <ProjectLinks
             github={project.links.github}

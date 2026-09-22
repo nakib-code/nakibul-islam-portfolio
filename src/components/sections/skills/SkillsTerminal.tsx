@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type LineType = "system" | "command" | "output";
 
@@ -9,40 +10,44 @@ type TerminalLine = {
   text: string;
 };
 
-type SkillCategory = "frontend" | "backend" | "database" | "tools";
+type SkillCategory =
+  | "frontend"
+  | "backend"
+  | "database"
+  | "tools";
 
-const skillData: Record<SkillCategory, string[]> = {
+const skillKeys: Record<SkillCategory, string[]> = {
   frontend: [
-    "• React.js       : component-based UI development",
-    "• Next.js        : production React framework",
-    "• TypeScript     : type-safe JavaScript development",
-    "• JavaScript     : modern ES6+ development",
-    "• Tailwind CSS   : utility-first styling",
-    "• Shadcn UI      : reusable UI components",
+    "react",
+    "nextjs",
+    "typescript",
+    "javascript",
+    "tailwind",
+    "shadcn",
   ],
 
   backend: [
-    "• Node.js        : server-side JavaScript runtime",
-    "• Express.js     : REST API development",
-    "• REST API       : scalable API architecture",
-    "• JWT            : authentication & authorization",
-    "• Zod            : schema validation",
+    "nodejs",
+    "express",
+    "restApi",
+    "jwt",
+    "zod",
   ],
 
   database: [
-    "• PostgreSQL     : relational database",
-    "• MongoDB        : NoSQL database",
-    "• Prisma         : type-safe ORM",
-    "• Neon           : serverless PostgreSQL",
+    "postgresql",
+    "mongodb",
+    "prisma",
+    "neon",
   ],
 
   tools: [
-    "• Git            : version control",
-    "• GitHub         : source code management",
-    "• Docker         : containerization",
-    "• Vercel         : deployment platform",
-    "• Postman        : API testing",
-    "• Figma          : UI design",
+    "git",
+    "github",
+    "docker",
+    "vercel",
+    "postman",
+    "figma",
   ],
 };
 
@@ -54,6 +59,8 @@ const initialHistory: TerminalLine[] = [
 ];
 
 export default function SkillsTerminal() {
+  const { t } = useTranslation("common");
+
   const [history, setHistory] =
     useState<TerminalLine[]>(initialHistory);
 
@@ -67,20 +74,32 @@ export default function SkillsTerminal() {
     useState("");
 
   const queueRef = useRef<TerminalLine[]>([]);
+
   const typingTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isTypingRef = useRef(false);
 
-  // Always keep latest CPS value
   const cpsRef = useRef(cps);
 
+  /**
+   * Keep latest CPS available inside async timer.
+   */
   useEffect(() => {
     cpsRef.current = cps;
   }, [cps]);
 
   /**
-   * Clear current timer
+   * Process next terminal line.
+   *
+   * Using a ref avoids the recursive useCallback
+   * declaration problem.
+   */
+  const processNextLineRef =
+    useRef<() => void>(() => {});
+
+  /**
+   * Stop current typing.
    */
   const stopTyping = useCallback(() => {
     if (typingTimerRef.current) {
@@ -89,67 +108,86 @@ export default function SkillsTerminal() {
     }
 
     isTypingRef.current = false;
+
     setIsTyping(false);
     setCurrentTypingText("");
   }, []);
 
   /**
-   * Type next line
+   * Terminal engine.
    */
-  const processNextLine = useCallback(() => {
-    if (isTypingRef.current) return;
+  useEffect(() => {
+    processNextLineRef.current = () => {
+      if (isTypingRef.current) {
+        return;
+      }
 
-    if (queueRef.current.length === 0) return;
+      if (queueRef.current.length === 0) {
+        return;
+      }
 
-    const nextLine = queueRef.current.shift();
+      const nextLine = queueRef.current.shift();
 
-    if (!nextLine) return;
+      if (!nextLine) {
+        return;
+      }
 
-    /**
-     * Command instantly appears
-     */
-    if (nextLine.type === "command") {
-      setHistory((prev) => [...prev, nextLine]);
+      /**
+       * Command lines appear instantly.
+       */
+      if (nextLine.type === "command") {
+        setHistory((prev) => [
+          ...prev,
+          nextLine,
+        ]);
 
-      setTimeout(() => {
-        processNextLine();
-      }, 0);
+        typingTimerRef.current = setTimeout(() => {
+          processNextLineRef.current();
+        }, 0);
 
-      return;
-    }
+        return;
+      }
 
-    /**
-     * Start typing output
-     */
-    isTypingRef.current = true;
-    setIsTyping(true);
-    setCurrentTypingText("");
+      /**
+       * Start typing output.
+       */
+      isTypingRef.current = true;
 
-    let charIndex = 0;
+      setIsTyping(true);
+      setCurrentTypingText("");
 
-    const typeCharacter = () => {
-      if (charIndex < nextLine.text.length) {
-        charIndex++;
+      let charIndex = 0;
 
-        setCurrentTypingText(
-          nextLine.text.slice(0, charIndex)
-        );
+      const typeCharacter = () => {
+        if (charIndex < nextLine.text.length) {
+          charIndex += 1;
+
+          setCurrentTypingText(
+            nextLine.text.slice(0, charIndex)
+          );
+
+          /**
+           * Read latest CPS on every character.
+           */
+          const currentCps = Math.max(
+            cpsRef.current,
+            1
+          );
+
+          const msPerChar =
+            1000 / currentCps;
+
+          typingTimerRef.current = setTimeout(
+            typeCharacter,
+            msPerChar
+          );
+
+          return;
+        }
 
         /**
-         * IMPORTANT:
-         * CPS is read every character.
-         *
-         * So changing the slider immediately
-         * changes typing speed.
+         * Typing finished.
          */
-        const currentCps = Math.max(cpsRef.current, 1);
-        const msPerChar = 1000 / currentCps;
-
-        typingTimerRef.current = setTimeout(
-          typeCharacter,
-          msPerChar
-        );
-      } else {
         setHistory((prev) => [
           ...prev,
           nextLine,
@@ -160,23 +198,28 @@ export default function SkillsTerminal() {
         isTypingRef.current = false;
         setIsTyping(false);
 
-        setTimeout(() => {
-          processNextLine();
+        typingTimerRef.current = setTimeout(() => {
+          processNextLineRef.current();
         }, 0);
-      }
+      };
+
+      const currentCps = Math.max(
+        cpsRef.current,
+        1
+      );
+
+      const msPerChar =
+        1000 / currentCps;
+
+      typingTimerRef.current = setTimeout(
+        typeCharacter,
+        msPerChar
+      );
     };
-
-    const currentCps = Math.max(cpsRef.current, 1);
-    const msPerChar = 1000 / currentCps;
-
-    typingTimerRef.current = setTimeout(
-      typeCharacter,
-      msPerChar
-    );
   }, []);
 
   /**
-   * Execute command
+   * Execute terminal command.
    */
   const executeCommand = (
     command: SkillCategory | "clear"
@@ -198,8 +241,8 @@ export default function SkillsTerminal() {
     }
 
     /**
-     * If something is currently typing,
-     * finish visible part and continue.
+     * Stop current typing if another
+     * command is clicked.
      */
     if (isTypingRef.current) {
       if (typingTimerRef.current) {
@@ -207,14 +250,14 @@ export default function SkillsTerminal() {
         typingTimerRef.current = null;
       }
 
-      setCurrentTypingText("");
-
       isTypingRef.current = false;
+
       setIsTyping(false);
+      setCurrentTypingText("");
     }
 
     /**
-     * Command line
+     * Command line.
      */
     const commandLine: TerminalLine = {
       type: "command",
@@ -222,16 +265,16 @@ export default function SkillsTerminal() {
     };
 
     /**
-     * Skill lines
+     * Skill output lines.
      */
     const skillLines: TerminalLine[] =
-      skillData[command].map((skill) => ({
+      skillKeys[command].map((skillKey) => ({
         type: "output",
-        text: skill,
+        text: t(`skills.terminal.${skillKey}`),
       }));
 
     /**
-     * Add command + skills
+     * Add command + skill lines to queue.
      */
     queueRef.current.push(
       commandLine,
@@ -239,23 +282,23 @@ export default function SkillsTerminal() {
     );
 
     /**
-     * Real statistics
+     * Update statistics.
      */
     setExecsCount((prev) => prev + 1);
 
     setSkillsLoaded(
       (prev) =>
-        prev + skillData[command].length
+        prev + skillKeys[command].length
     );
 
     /**
-     * Start terminal engine
+     * Start terminal engine.
      */
-    processNextLine();
+    processNextLineRef.current();
   };
 
   /**
-   * Cleanup
+   * Cleanup timers on unmount.
    */
   useEffect(() => {
     return () => {
@@ -280,7 +323,6 @@ export default function SkillsTerminal() {
           <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 sm:text-xs">
             skills_terminal
           </span>
-
         </div>
 
         {/* Terminal Screen */}
@@ -316,8 +358,8 @@ export default function SkillsTerminal() {
                     line.type === "system"
                       ? "text-amber-400"
                       : line.type === "command"
-                      ? "text-blue-400"
-                      : "pl-1 text-slate-300"
+                        ? "text-blue-400"
+                        : "pl-1 text-slate-300"
                   }
                 `}
               >
@@ -325,7 +367,7 @@ export default function SkillsTerminal() {
               </div>
             ))}
 
-            {/* Current typing */}
+            {/* Current Typing */}
             {isTyping && currentTypingText && (
               <div className="mb-2 whitespace-pre-wrap break-words pl-1 text-[11px] leading-5 text-slate-300 sm:text-sm sm:leading-relaxed">
                 {currentTypingText}
@@ -338,10 +380,11 @@ export default function SkillsTerminal() {
 
         {/* Status */}
         <div className="grid grid-cols-3 border-y border-white/5 bg-[#0b1019]">
-          {/* Online */}
+
+          {/* System Status */}
           <div className="px-2 py-4 text-center">
             <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-slate-500 sm:text-[10px]">
-              System Status
+              {t("skills.terminal.systemStatus")}
             </div>
 
             <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-wider text-emerald-400 sm:text-xs">
@@ -351,14 +394,14 @@ export default function SkillsTerminal() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
 
-              ONLINE
+              {t("skills.terminal.online")}
             </div>
           </div>
 
           {/* Commands */}
           <div className="border-x border-white/5 px-2 py-4 text-center">
             <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-slate-500 sm:text-[10px]">
-              Commands
+              {t("skills.terminal.commands")}
             </div>
 
             <div className="text-sm font-bold tabular-nums text-slate-200 sm:text-base">
@@ -369,7 +412,7 @@ export default function SkillsTerminal() {
           {/* Skills */}
           <div className="px-2 py-4 text-center">
             <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-slate-500 sm:text-[10px]">
-              Skills Loaded
+              {t("skills.terminal.skillsLoaded")}
             </div>
 
             <div className="text-sm font-bold tabular-nums text-slate-200 sm:text-base">
@@ -381,7 +424,7 @@ export default function SkillsTerminal() {
         {/* Commands */}
         <div className="p-3 sm:p-5">
           <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500 sm:text-xs">
-            Trigger Command Matrix
+            {t("skills.terminal.commandMatrix")}
           </div>
 
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
@@ -422,7 +465,7 @@ export default function SkillsTerminal() {
                   sm:text-xs
                 "
               >
-                {command}
+                {t(`skills.categories.${command}`)}
               </button>
             ))}
 
@@ -455,7 +498,7 @@ export default function SkillsTerminal() {
                 sm:text-xs
               "
             >
-              Clear
+              {t("skills.terminal.clear")}
             </button>
           </div>
         </div>
@@ -468,7 +511,9 @@ export default function SkillsTerminal() {
             <div className="w-full sm:max-w-md">
               <div className="mb-2 flex items-center justify-between">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500 sm:text-[10px]">
-                  Typewriter Frequency
+                  {t(
+                    "skills.terminal.typewriterFrequency"
+                  )}
                 </span>
 
                 <span className="text-[10px] font-bold tabular-nums text-blue-400 sm:text-xs">
@@ -530,7 +575,7 @@ export default function SkillsTerminal() {
                 sm:w-auto
               "
             >
-              Wipe Terminal
+              {t("skills.terminal.wipe")}
             </button>
           </div>
         </div>

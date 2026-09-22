@@ -1,11 +1,7 @@
-export interface ProjectLink {
-  github: string;
-  live: string;
-  caseStudy?: string;
-}
-
-export interface Project {
+export type Project = {
   id: number;
+
+  key: "nakivo" | "fixitnow";
 
   title: string;
 
@@ -23,5 +19,8 @@ export interface Project {
 
   features: string[];
 
-  links: ProjectLink;
-}
+  links: {
+    github: string;
+    live: string;
+  };
+};

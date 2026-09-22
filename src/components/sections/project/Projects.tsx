@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -11,6 +12,7 @@ import ProjectCard from "./ProjectCard";
 
 const containerVariants = {
   hidden: {},
+
   visible: {
     transition: {
       staggerChildren: 0.18,
@@ -20,6 +22,8 @@ const containerVariants = {
 };
 
 export default function Projects() {
+  const { t } = useTranslation("common");
+
   return (
     <section
       id="projects"
@@ -41,9 +45,9 @@ export default function Projects() {
 
       <Container>
         <SectionHeading
-          badge={projectsContent.badge}
-          title={projectsContent.title}
-          description={projectsContent.description}
+          badge={t("projects.badge")}
+          title={t("projects.title")}
+          description={t("projects.description")}
         />
 
         <motion.div
@@ -56,13 +60,15 @@ export default function Projects() {
           }}
           className="mt-20 space-y-32"
         >
-          {projectsContent.projects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              reverse={index % 2 !== 0}
-            />
-          ))}
+          {projectsContent.projects.map(
+            (project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                reverse={index % 2 !== 0}
+              />
+            )
+          )}
         </motion.div>
       </Container>
     </section>

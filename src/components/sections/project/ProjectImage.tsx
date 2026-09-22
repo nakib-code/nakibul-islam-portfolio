@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ProjectImageProps {
   images: string[];
@@ -14,6 +15,7 @@ const imageVariants = {
   rest: {
     scale: 1,
   },
+
   hover: {
     scale: 1.08,
   },
@@ -25,6 +27,7 @@ const overlayVariants = {
     y: 20,
     scale: 0.95,
   },
+
   hover: {
     opacity: 1,
     y: 0,
@@ -37,6 +40,8 @@ export default function ProjectImage({
   title,
   onViewCaseStudy,
 }: ProjectImageProps) {
+  const { t } = useTranslation("common");
+
   return (
     <motion.div
       initial="rest"
@@ -93,10 +98,15 @@ export default function ProjectImage({
           <button
             type="button"
             onClick={onViewCaseStudy}
-            aria-label={`View ${title} case study`}
+            aria-label={t(
+              "projects.viewCaseStudyAria",
+              { title }
+            )}
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/85 px-4 py-2 text-sm font-semibold text-foreground shadow-xl backdrop-blur-xl transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
           >
-            <span>View Case Study</span>
+            <span>
+              {t("projects.viewCaseStudy")}
+            </span>
 
             <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>

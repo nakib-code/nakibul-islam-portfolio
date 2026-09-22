@@ -75,6 +75,105 @@
   "fullStackDevelopmentDescription": "Experienced with frontend, backend, databases, authentication and deployment workflows."
 },
 
+"skills": {
+  "badge": "Skills",
+  "title": "My technical skills & development stack.",
+  "description": "Explore my technical stack through an interactive terminal. Select a category to see the technologies I work with.",
+
+  "categories": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+    "tools": "Tools"
+  },
+
+  "terminal": {
+    "systemStatus": "System Status",
+    "online": "ONLINE",
+    "commands": "Commands",
+    "skillsLoaded": "Skills Loaded",
+    "commandMatrix": "Trigger Command Matrix",
+    "clear": "Clear",
+    "typewriterFrequency": "Typewriter Frequency",
+    "wipe": "Wipe Terminal",
+
+    "react": "• React.js       : component-based UI development",
+    "nextjs": "• Next.js        : production React framework",
+    "typescript": "• TypeScript     : type-safe JavaScript development",
+    "javascript": "• JavaScript     : modern ES6+ development",
+    "tailwind": "• Tailwind CSS   : utility-first styling",
+    "shadcn": "• Shadcn UI      : reusable UI components",
+
+    "nodejs": "• Node.js        : server-side JavaScript runtime",
+    "express": "• Express.js     : REST API development",
+    "restApi": "• REST API       : scalable API architecture",
+    "jwt": "• JWT            : authentication & authorization",
+    "zod": "• Zod            : schema validation",
+
+    "postgresql": "• PostgreSQL     : relational database",
+    "mongodb": "• MongoDB        : NoSQL database",
+    "prisma": "• Prisma         : type-safe ORM",
+    "neon": "• Neon           : serverless PostgreSQL",
+
+    "git": "• Git            : version control",
+    "github": "• GitHub         : source code management",
+    "docker": "• Docker         : containerization",
+    "vercel": "• Vercel         : deployment platform",
+    "postman": "• Postman        : API testing",
+    "figma": "• Figma          : UI design"
+  }
+},
+"projects": {
+  "badge": "Featured Projects",
+  "title": "Production-ready applications I've built.",
+  "description": "A selection of projects demonstrating my experience in full-stack development, clean architecture, authentication, dashboards and modern UI.",
+
+  "caseStudy": "Case Study",
+  "overview": "Overview",
+  "technologies": "Technologies",
+  "keyFeatures": "Key Features",
+  "liveDemo": "Live Demo",
+  "github": "GitHub",
+  "viewCaseStudy": "View Case Study",
+  "closeCaseStudy": "Close project case study",
+  "previousImage": "Previous project image",
+  "nextImage": "Next project image",
+  "viewImage": "View project image",
+  "viewCaseStudyAria": "View {{title}} case study",
+
+  "status": {
+    "production": "Production Ready",
+    "progress": "In Progress"
+  },
+
+  "items": {
+    "nakivo": {
+      "title": "Nakivo",
+      "shortDescription": "Modern Full Stack Ecommerce Platform",
+      "description": "A scalable ecommerce application built with Next.js App Router featuring authentication, admin dashboard, product management and responsive design.",
+
+      "features": [
+        "Authentication",
+        "Admin Dashboard",
+        "Product Management",
+        "Responsive UI"
+      ]
+    },
+
+    "fixitnow": {
+      "title": "FixItNow",
+      "shortDescription": "Home Service Marketplace",
+      "description": "A full-stack marketplace connecting customers with technicians including booking, payment, dashboard and role-based authentication.",
+
+      "features": [
+        "Booking System",
+        "SSLCommerz Payment",
+        "Role Based Dashboard",
+        "Reviews"
+      ]
+    }
+  }
+},
   "services": {
     "badge": "Services",
     "title": "Solutions built around your business needs.",

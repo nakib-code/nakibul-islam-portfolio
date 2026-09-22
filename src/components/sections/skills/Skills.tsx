@@ -1,10 +1,14 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/shared/SectionHeading";
 import SkillsTerminal from "./SkillsTerminal";
 
 export default function Skills() {
+  const { t } = useTranslation("common");
+
   return (
     <section
       id="skills"
@@ -35,9 +39,9 @@ export default function Skills() {
       <Container>
         {/* Section Heading */}
         <SectionHeading
-          badge="Skills"
-          title="My technical skills & development stack."
-          description="Explore my technical stack through an interactive terminal. Select a category to see the technologies I work with."
+          badge={t("skills.badge")}
+          title={t("skills.title")}
+          description={t("skills.description")}
         />
 
         {/* Skills Terminal */}
