@@ -57,6 +57,24 @@
     }
   },
 
+  "whyChooseMe": {
+  "badge": "Why Choose Me",
+  "title": "Building reliable digital products that scale.",
+  "description": "I build fast, scalable, and user-focused applications using modern technologies and clean architecture.",
+
+  "performanceFirst": "Performance First",
+  "performanceFirstDescription": "Optimized applications focused on speed, SEO, accessibility and excellent user experience.",
+
+  "cleanArchitecture": "Clean Architecture",
+  "cleanArchitectureDescription": "Reusable components, scalable structure and maintainable code for long-term projects.",
+
+  "responsiveDesign": "Responsive Design",
+  "responsiveDesignDescription": "Pixel-perfect interfaces that work beautifully across desktop, tablet and mobile devices.",
+
+  "fullStackDevelopment": "Full Stack Development",
+  "fullStackDevelopmentDescription": "Experienced with frontend, backend, databases, authentication and deployment workflows."
+},
+
   "services": {
     "badge": "Services",
     "title": "Solutions built around your business needs.",

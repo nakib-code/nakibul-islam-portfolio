@@ -57,6 +57,24 @@
     }
   },
 
+  "whyChooseMe": {
+  "badge": "কেন আমাকে বেছে নেবেন",
+  "title": "স্কেলযোগ্য ও নির্ভরযোগ্য ডিজিটাল পণ্য তৈরি করি।",
+  "description": "আধুনিক প্রযুক্তি এবং পরিষ্কার আর্কিটেকচার ব্যবহার করে দ্রুত, স্কেলযোগ্য এবং ব্যবহারবান্ধব অ্যাপ্লিকেশন তৈরি করি।",
+
+  "performanceFirst": "পারফরম্যান্সকে গুরুত্ব দিই",
+  "performanceFirstDescription": "দ্রুত গতি, SEO, accessibility এবং চমৎকার user experience-এর জন্য অপটিমাইজড অ্যাপ্লিকেশন তৈরি করি।",
+
+  "cleanArchitecture": "ক্লিন আর্কিটেকচার",
+  "cleanArchitectureDescription": "দীর্ঘমেয়াদি প্রজেক্টের জন্য reusable components, scalable structure এবং maintainable code ব্যবহার করি।",
+
+  "responsiveDesign": "রেসপন্সিভ ডিজাইন",
+  "responsiveDesignDescription": "Desktop, tablet এবং mobile—সব ডিভাইসে সুন্দরভাবে কাজ করে এমন pixel-perfect interface তৈরি করি।",
+
+  "fullStackDevelopment": "ফুল স্ট্যাক ডেভেলপমেন্ট",
+  "fullStackDevelopmentDescription": "Frontend, backend, database, authentication এবং deployment workflow নিয়ে কাজ করার অভিজ্ঞতা রয়েছে।"
+},
+
   "services": {
     "badge": "সেবাসমূহ",
     "title": "আপনার ব্যবসার প্রয়োজন অনুযায়ী তৈরি সমাধান।",
