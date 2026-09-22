@@ -11,61 +11,45 @@ import {
 } from "framer-motion";
 
 import { experienceContent } from "@/data/experience";
+
 import ExperienceItem from "./ExperienceItem";
 
 export default function ExperienceTimeline() {
-  const timelineRef = useRef<HTMLDivElement>(null);
+  const timelineRef =
+    useRef<HTMLDivElement>(null);
 
-  // =========================================
-  // SCROLL PROGRESS
-  // =========================================
-
+  // Scroll Progress
   const { scrollYProgress } = useScroll({
     target: timelineRef,
     offset: ["start 80%", "end 20%"],
   });
 
-  // =========================================
-  // TIMELINE LINE
-  // =========================================
-
+  // Timeline Line
   const lineHeight = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", "100%"]
+    ["0%", "100%"],
   );
 
-  // =========================================
-  // ROCKET POSITION
-  // =========================================
-  // IMPORTANT:
-  // Use percentage position directly.
-  // Rocket starts at 0 and ends at 100%.
-
+  // Rocket Position
   const rocketTop = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", "100%"]
+    ["0%", "100%"],
   );
 
-  // =========================================
-  // ROCKET SCALE
-  // =========================================
-
+  // Rocket Scale
   const rocketScale = useTransform(
     scrollYProgress,
     [0, 0.1, 0.5, 0.9, 1],
-    [0.9, 1, 1.05, 1, 1.05]
+    [0.9, 1, 1.05, 1, 1.05],
   );
 
-  // =========================================
-  // ROCKET GLOW
-  // =========================================
-
+  // Rocket Glow
   const glowOpacity = useTransform(
     scrollYProgress,
     [0, 0.1, 0.5, 1],
-    [0.2, 0.8, 1, 0.8]
+    [0.2, 0.8, 1, 0.8],
   );
 
   return (
@@ -73,10 +57,7 @@ export default function ExperienceTimeline() {
       ref={timelineRef}
       className="relative mt-16"
     >
-      {/* =========================================
-          BASE TIMELINE
-      ========================================= */}
-
+      {/* Base Timeline */}
       <div
         className="
           absolute
@@ -90,10 +71,7 @@ export default function ExperienceTimeline() {
         "
       />
 
-      {/* =========================================
-          ANIMATED TIMELINE
-      ========================================= */}
-
+      {/* Animated Timeline */}
       <motion.div
         style={{
           height: lineHeight,
@@ -116,10 +94,7 @@ export default function ExperienceTimeline() {
         "
       />
 
-      {/* =========================================
-          ROCKET
-      ========================================= */}
-
+      {/* Rocket */}
       <motion.div
         style={{
           top: rocketTop,
@@ -135,10 +110,7 @@ export default function ExperienceTimeline() {
           md:left-1/2
         "
       >
-        {/* =====================================
-            GLOW
-        ===================================== */}
-
+        {/* Glow */}
         <motion.div
           style={{
             opacity: glowOpacity,
@@ -156,10 +128,7 @@ export default function ExperienceTimeline() {
           "
         />
 
-        {/* =====================================
-            ROCKET IMAGE
-        ===================================== */}
-
+        {/* Rocket */}
         <div className="relative flex size-11 items-center justify-center">
           <Image
             src="/images/rocket.png"
@@ -177,10 +146,7 @@ export default function ExperienceTimeline() {
           />
         </div>
 
-        {/* =====================================
-            FLAME
-        ===================================== */}
-
+        {/* Flame */}
         <motion.div
           animate={{
             scaleY: [0.7, 1.2, 0.8, 1],
@@ -209,10 +175,7 @@ export default function ExperienceTimeline() {
           "
         />
 
-        {/* =====================================
-            FLAME CORE
-        ===================================== */}
-
+        {/* Flame Core */}
         <motion.span
           animate={{
             scale: [0.7, 1, 0.75],
@@ -237,10 +200,7 @@ export default function ExperienceTimeline() {
           "
         />
 
-        {/* =====================================
-            PARTICLE 1
-        ===================================== */}
-
+        {/* Particle 1 */}
         <motion.span
           animate={{
             y: [0, 8, 16],
@@ -263,10 +223,7 @@ export default function ExperienceTimeline() {
           "
         />
 
-        {/* =====================================
-            PARTICLE 2
-        ===================================== */}
-
+        {/* Particle 2 */}
         <motion.span
           animate={{
             y: [0, 8, 16],
@@ -289,10 +246,7 @@ export default function ExperienceTimeline() {
           "
         />
 
-        {/* =====================================
-            PARTICLE 3
-        ===================================== */}
-
+        {/* Particle 3 */}
         <motion.span
           animate={{
             y: [0, 6, 13],
@@ -316,18 +270,17 @@ export default function ExperienceTimeline() {
         />
       </motion.div>
 
-      {/* =========================================
-          EXPERIENCE ITEMS
-      ========================================= */}
-
+      {/* Experience Items */}
       <div className="relative space-y-10 md:space-y-16">
-        {experienceContent.items.map((item, index) => (
-          <ExperienceItem
-            key={`${item.year}-${item.title}`}
-            item={item}
-            index={index}
-          />
-        ))}
+        {experienceContent.items.map(
+          (item, index) => (
+            <ExperienceItem
+              key={item.id}
+              item={item}
+              index={index}
+            />
+          ),
+        )}
       </div>
     </div>
   );

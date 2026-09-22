@@ -2,28 +2,79 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Check, Loader2, Send } from "lucide-react";
+import {
+  ArrowUpRight,
+  Check,
+  Loader2,
+  Send,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
+
+type FormStatus = "idle" | "sending" | "success" | "error";
 
 export default function ContactTerminal() {
+  const { t } = useTranslation("common");
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success"
-  >("idle");
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ) => {
     e.preventDefault();
 
-    if (!name || !email || !message) return;
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      return;
+    }
 
     setStatus("sending");
+    setErrorMessage("");
 
-    // Temporary simulation
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        }),
+      });
 
-    setStatus("success");
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message || "Failed to send message.",
+        );
+      }
+
+      setStatus("success");
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      setStatus("error");
+
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Failed to send message. Please try again.",
+      );
+    }
+  };
+
+  const handleReset = () => {
+    setStatus("idle");
+    setErrorMessage("");
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   return (
@@ -46,22 +97,21 @@ export default function ContactTerminal() {
       {/* Terminal Body */}
       <div className="p-5 sm:p-7">
         {status === "success" ? (
-          <SuccessMessage
-            onReset={() => {
-              setStatus("idle");
-              setName("");
-              setEmail("");
-              setMessage("");
-            }}
-          />
+          <SuccessMessage onReset={handleReset} />
         ) : (
           <>
             {/* Command */}
             <div className="mb-6 font-mono text-sm">
-              <span className="text-emerald-400">nakib@portfolio</span>
+              <span className="text-emerald-400">
+                nakib@portfolio
+              </span>
+
               <span className="text-gray-500">:</span>
+
               <span className="text-blue-400">~</span>
+
               <span className="text-gray-500">$ </span>
+
               <span className="text-gray-200">
                 ./send-message
                 <span className="ml-1 inline-block animate-pulse text-primary">
@@ -70,39 +120,63 @@ export default function ContactTerminal() {
               </span>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5"
+            >
               {/* Name */}
               <TerminalInput
-                label="Name"
+                label={t("contact.terminal.name")}
                 value={name}
                 onChange={setName}
-                placeholder="Ahmed"
+                placeholder={t(
+                  "contact.terminal.namePlaceholder",
+                )}
                 type="text"
+                disabled={status === "sending"}
               />
 
               {/* Email */}
               <TerminalInput
-                label="Email"
+                label={t("contact.terminal.email")}
                 value={email}
                 onChange={setEmail}
-                placeholder="you@example.com"
+                placeholder={t(
+                  "contact.terminal.emailPlaceholder",
+                )}
                 type="email"
+                disabled={status === "sending"}
               />
 
               {/* Message */}
               <div>
                 <label className="mb-2 block font-mono text-xs text-gray-500">
-                  <span className="text-primary">›</span> Message
+                  <span className="text-primary">›</span>{" "}
+                  {t("contact.terminal.message")}
                 </label>
 
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Tell me about your project..."
+                  placeholder={t(
+                    "contact.terminal.messagePlaceholder",
+                  )}
                   rows={5}
-                  className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-sm text-gray-200 outline-none transition-all duration-300 placeholder:text-gray-600 focus:border-primary/50 focus:bg-primary/[0.03] focus:ring-2 focus:ring-primary/10"
+                  disabled={status === "sending"}
+                  className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-sm text-gray-200 outline-none transition-all duration-300 placeholder:text-gray-600 focus:border-primary/50 focus:bg-primary/[0.03] focus:ring-2 focus:ring-primary/10 disabled:cursor-not-allowed disabled:opacity-60"
                 />
               </div>
+
+              {/* Error */}
+              {status === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 font-mono text-xs leading-5 text-red-400"
+                >
+                  {errorMessage}
+                </motion.div>
+              )}
 
               {/* Button */}
               <motion.button
@@ -115,12 +189,14 @@ export default function ContactTerminal() {
                 {status === "sending" ? (
                   <>
                     <Loader2 className="size-4 animate-spin" />
-                    Sending...
+                    {t("contact.terminal.sending")}
                   </>
                 ) : (
                   <>
                     <Send className="size-4" />
-                    SEND MESSAGE
+
+                    {t("contact.terminal.sendButton")}
+
                     <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </>
                 )}
@@ -139,17 +215,20 @@ function TerminalInput({
   onChange,
   placeholder,
   type,
+  disabled,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   placeholder: string;
   type: string;
+  disabled?: boolean;
 }) {
   return (
     <div>
       <label className="mb-2 block font-mono text-xs text-gray-500">
-        <span className="text-primary">›</span> {label}
+        <span className="text-primary">›</span>{" "}
+        {label}
       </label>
 
       <input
@@ -157,13 +236,21 @@ function TerminalInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-sm text-gray-200 outline-none transition-all duration-300 placeholder:text-gray-600 focus:border-primary/50 focus:bg-primary/[0.03] focus:ring-2 focus:ring-primary/10"
+        disabled={disabled}
+        required
+        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-sm text-gray-200 outline-none transition-all duration-300 placeholder:text-gray-600 focus:border-primary/50 focus:bg-primary/[0.03] focus:ring-2 focus:ring-primary/10 disabled:cursor-not-allowed disabled:opacity-60"
       />
     </div>
   );
 }
 
-function SuccessMessage({ onReset }: { onReset: () => void }) {
+function SuccessMessage({
+  onReset,
+}: {
+  onReset: () => void;
+}) {
+  const { t } = useTranslation("common");
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -184,22 +271,22 @@ function SuccessMessage({ onReset }: { onReset: () => void }) {
       </motion.div>
 
       <p className="mt-6 text-sm text-emerald-400">
-        ✓ Message sent successfully.
+        ✓ {t("contact.terminal.successMessage")}
       </p>
 
       <h3 className="mt-3 text-xl font-semibold text-gray-100">
-        Thanks for reaching out!
+        {t("contact.terminal.successTitle")}
       </h3>
 
       <p className="mt-3 max-w-sm text-sm leading-6 text-gray-500">
-        I appreciate your message. I'll get back to you as soon as possible.
+        {t("contact.terminal.successDescription")}
       </p>
 
       <button
         onClick={onReset}
         className="mt-7 rounded-xl border border-white/10 px-4 py-2 text-xs text-gray-400 transition-colors hover:border-primary/30 hover:text-primary"
       >
-        SEND ANOTHER MESSAGE
+        {t("contact.terminal.sendAnother")}
       </button>
     </motion.div>
   );

@@ -29,20 +29,6 @@ export default function Projects() {
       id="projects"
       className="relative overflow-hidden py-28 lg:py-36"
     >
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[600px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-[150px]" />
-
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right,currentColor 1px,transparent 1px), linear-gradient(to bottom,currentColor 1px,transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-      </div>
-
       <Container>
         <SectionHeading
           badge={t("projects.badge")}

@@ -163,7 +163,7 @@ export default function SkillsTerminal() {
           charIndex += 1;
 
           setCurrentTypingText(
-            nextLine.text.slice(0, charIndex)
+            nextLine.text.slice(0, charIndex),
           );
 
           /**
@@ -171,15 +171,14 @@ export default function SkillsTerminal() {
            */
           const currentCps = Math.max(
             cpsRef.current,
-            1
+            1,
           );
 
-          const msPerChar =
-            1000 / currentCps;
+          const msPerChar = 1000 / currentCps;
 
           typingTimerRef.current = setTimeout(
             typeCharacter,
-            msPerChar
+            msPerChar,
           );
 
           return;
@@ -205,15 +204,14 @@ export default function SkillsTerminal() {
 
       const currentCps = Math.max(
         cpsRef.current,
-        1
+        1,
       );
 
-      const msPerChar =
-        1000 / currentCps;
+      const msPerChar = 1000 / currentCps;
 
       typingTimerRef.current = setTimeout(
         typeCharacter,
-        msPerChar
+        msPerChar,
       );
     };
   }, []);
@@ -222,7 +220,7 @@ export default function SkillsTerminal() {
    * Execute terminal command.
    */
   const executeCommand = (
-    command: SkillCategory | "clear"
+    command: SkillCategory | "clear",
   ) => {
     /**
      * CLEAR
@@ -278,7 +276,7 @@ export default function SkillsTerminal() {
      */
     queueRef.current.push(
       commandLine,
-      ...skillLines
+      ...skillLines,
     );
 
     /**
@@ -288,7 +286,7 @@ export default function SkillsTerminal() {
 
     setSkillsLoaded(
       (prev) =>
-        prev + skillKeys[command].length
+        prev + skillKeys[command].length,
     );
 
     /**
@@ -310,17 +308,17 @@ export default function SkillsTerminal() {
 
   return (
     <div className="mx-auto w-full max-w-3xl px-3 sm:px-4">
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0f17] font-mono text-slate-200 shadow-2xl">
+      <div className="overflow-hidden rounded-2xl border border-[#2c2335] bg-[#100c16] font-mono text-[#f1ecf5] shadow-2xl shadow-[#8d52fe]/5">
 
         {/* Terminal Header */}
-        <div className="flex items-center justify-between border-b border-white/10 bg-[#0f1520] px-4 py-3 sm:px-5">
+        <div className="flex items-center justify-between border-b border-[#2c2335] bg-[#18121f] px-4 py-3 sm:px-5">
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-red-500" />
             <span className="h-3 w-3 rounded-full bg-yellow-500" />
             <span className="h-3 w-3 rounded-full bg-green-500" />
           </div>
 
-          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 sm:text-xs">
+          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#746d7d] sm:text-xs">
             skills_terminal
           </span>
         </div>
@@ -333,11 +331,11 @@ export default function SkillsTerminal() {
               overflow-y-auto
               overscroll-contain
               rounded-xl
-              border border-white/5
-              bg-[#060a10]
+              border border-[#2c2335]
+              bg-[#0d0a11]
               p-4
               scrollbar-thin
-              scrollbar-thumb-slate-800
+              scrollbar-thumb-[#2c2335]
               scrollbar-track-transparent
               sm:h-[330px]
               sm:p-5
@@ -356,10 +354,10 @@ export default function SkillsTerminal() {
                   sm:leading-relaxed
                   ${
                     line.type === "system"
-                      ? "text-amber-400"
+                      ? "text-[#c7a6ff]"
                       : line.type === "command"
-                        ? "text-blue-400"
-                        : "pl-1 text-slate-300"
+                        ? "text-[#8d52fe]"
+                        : "pl-1 text-[#a59bae]"
                   }
                 `}
               >
@@ -369,29 +367,29 @@ export default function SkillsTerminal() {
 
             {/* Current Typing */}
             {isTyping && currentTypingText && (
-              <div className="mb-2 whitespace-pre-wrap break-words pl-1 text-[11px] leading-5 text-slate-300 sm:text-sm sm:leading-relaxed">
+              <div className="mb-2 whitespace-pre-wrap break-words pl-1 text-[11px] leading-5 text-[#a59bae] sm:text-sm sm:leading-relaxed">
                 {currentTypingText}
 
-                <span className="ml-1 inline-block h-3.5 w-1.5 animate-pulse bg-slate-400 sm:h-4" />
+                <span className="ml-1 inline-block h-3.5 w-1.5 animate-pulse bg-[#c7a6ff] sm:h-4" />
               </div>
             )}
           </div>
         </div>
 
         {/* Status */}
-        <div className="grid grid-cols-3 border-y border-white/5 bg-[#0b1019]">
+        <div className="grid grid-cols-3 border-y border-[#2c2335] bg-[#18121f]">
 
           {/* System Status */}
           <div className="px-2 py-4 text-center">
-            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-slate-500 sm:text-[10px]">
+            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-[#746d7d] sm:text-[10px]">
               {t("skills.terminal.systemStatus")}
             </div>
 
-            <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-wider text-emerald-400 sm:text-xs">
+            <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-wider text-[#c7a6ff] sm:text-xs">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8d52fe] opacity-50" />
 
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8d52fe]" />
               </span>
 
               {t("skills.terminal.online")}
@@ -399,23 +397,23 @@ export default function SkillsTerminal() {
           </div>
 
           {/* Commands */}
-          <div className="border-x border-white/5 px-2 py-4 text-center">
-            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-slate-500 sm:text-[10px]">
+          <div className="border-x border-[#2c2335] px-2 py-4 text-center">
+            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-[#746d7d] sm:text-[10px]">
               {t("skills.terminal.commands")}
             </div>
 
-            <div className="text-sm font-bold tabular-nums text-slate-200 sm:text-base">
+            <div className="text-sm font-bold tabular-nums text-[#f1ecf5] sm:text-base">
               {String(execsCount).padStart(2, "0")}
             </div>
           </div>
 
           {/* Skills */}
           <div className="px-2 py-4 text-center">
-            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-slate-500 sm:text-[10px]">
+            <div className="mb-1 text-[9px] font-semibold uppercase tracking-wider text-[#746d7d] sm:text-[10px]">
               {t("skills.terminal.skillsLoaded")}
             </div>
 
-            <div className="text-sm font-bold tabular-nums text-slate-200 sm:text-base">
+            <div className="text-sm font-bold tabular-nums text-[#f1ecf5] sm:text-base">
               {skillsLoaded}
             </div>
           </div>
@@ -423,7 +421,7 @@ export default function SkillsTerminal() {
 
         {/* Commands */}
         <div className="p-3 sm:p-5">
-          <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500 sm:text-xs">
+          <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.15em] text-[#746d7d] sm:text-xs">
             {t("skills.terminal.commandMatrix")}
           </div>
 
@@ -444,28 +442,30 @@ export default function SkillsTerminal() {
                 }
                 className="
                   rounded-lg
-                  border border-white/5
-                  bg-[#111824]
+                  border border-[#2c2335]
+                  bg-[#211a29]
                   px-3
                   py-2.5
                   text-[10px]
                   font-semibold
                   uppercase
                   tracking-wider
-                  text-slate-400
+                  text-[#a59bae]
                   transition
                   duration-200
-                  hover:border-blue-500/30
-                  hover:bg-blue-500/10
-                  hover:text-blue-300
+                  hover:border-[#8d52fe]/40
+                  hover:bg-[#8d52fe]/10
+                  hover:text-[#c7a6ff]
                   active:scale-[0.97]
                   focus:outline-none
                   focus:ring-1
-                  focus:ring-blue-500/50
+                  focus:ring-[#8d52fe]/50
                   sm:text-xs
                 "
               >
-                {t(`skills.categories.${command}`)}
+                {t(
+                  `skills.categories.${command}`,
+                )}
               </button>
             ))}
 
@@ -504,19 +504,19 @@ export default function SkillsTerminal() {
         </div>
 
         {/* Speed Controls */}
-        <div className="border-t border-white/5 bg-[#0a0f17] p-3 sm:p-5">
+        <div className="border-t border-[#2c2335] bg-[#18121f] p-3 sm:p-5">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
             {/* Slider */}
             <div className="w-full sm:max-w-md">
               <div className="mb-2 flex items-center justify-between">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500 sm:text-[10px]">
+                <span className="text-[9px] font-bold uppercase tracking-wider text-[#746d7d] sm:text-[10px]">
                   {t(
-                    "skills.terminal.typewriterFrequency"
+                    "skills.terminal.typewriterFrequency",
                   )}
                 </span>
 
-                <span className="text-[10px] font-bold tabular-nums text-blue-400 sm:text-xs">
+                <span className="text-[10px] font-bold tabular-nums text-[#8d52fe] sm:text-xs">
                   {cps} CPS
                 </span>
               </div>
@@ -529,7 +529,7 @@ export default function SkillsTerminal() {
                 value={cps}
                 onChange={(event) =>
                   setCps(
-                    Number(event.target.value)
+                    Number(event.target.value),
                   )
                 }
                 className="
@@ -538,13 +538,13 @@ export default function SkillsTerminal() {
                   cursor-pointer
                   appearance-none
                   rounded-full
-                  bg-slate-800
-                  accent-blue-500
+                  bg-[#2c2335]
+                  accent-[#8d52fe]
                   focus:outline-none
                 "
               />
 
-              <div className="mt-1 flex justify-between text-[8px] text-slate-600">
+              <div className="mt-1 flex justify-between text-[8px] text-[#746d7d]">
                 <span>5</span>
                 <span>20</span>
                 <span>40</span>

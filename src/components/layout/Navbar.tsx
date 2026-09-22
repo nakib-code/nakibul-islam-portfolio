@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
@@ -22,9 +23,17 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-heading text-2xl font-bold tracking-tight transition-colors hover:text-primary"
+            aria-label="Nakibul Islam"
+            className="relative flex h-[64px] w-24 items-start overflow-hidden md:h-[70px] md:w-32"
           >
-            Nakibul<span className="text-primary">.dev</span>
+            <Image
+              src="/logo.png"
+              alt="Nakibul Islam"
+              width={150}
+              height={150}
+              priority
+              className="absolute left-0 top-0 h-auto w-24 max-w-none md:w-32"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -86,7 +95,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-1.5 md:hidden">
             <LanguageToggle />
             <ThemeToggle />
             <MobileNav />

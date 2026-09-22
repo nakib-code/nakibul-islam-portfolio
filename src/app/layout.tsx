@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, Space_Grotesk } from "next/font/google";
+import {
+  Inter,
+  Space_Grotesk,
+  Noto_Sans_Bengali,
+} from "next/font/google";
 
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import ScrollProgress from "@/components/shared/ScrollProgress";
 import BackToTop from "@/components/shared/BackToTop";
 import I18nProvider from "@/providers/I18nProvider";
+import DeveloperSignalField from "@/components/background/DeveloperSignalField";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,6 +21,12 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space",
+  display: "swap",
+});
+
+const notoSansBengali = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  variable: "--font-bengali",
   display: "swap",
 });
 
@@ -85,7 +96,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nakibul Islam | Full Stack Developer",
 
-    description: "Modern Full Stack Developer Portfolio built with Next.js.",
+    description:
+      "Modern Full Stack Developer Portfolio built with Next.js.",
 
     url: "https://your-domain.com",
 
@@ -110,7 +122,8 @@ export const metadata: Metadata = {
 
     title: "Nakibul Islam | Full Stack Developer",
 
-    description: "Modern Full Stack Developer Portfolio built with Next.js.",
+    description:
+      "Modern Full Stack Developer Portfolio built with Next.js.",
 
     images: ["/og-image.png"],
   },
@@ -130,7 +143,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable}`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${notoSansBengali.variable}`}
     >
       <body className="min-h-screen bg-background font-sans antialiased">
         <script
@@ -146,9 +159,19 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Global developer signal background */}
+          <div className="pointer-events-none fixed inset-0 z-0">
+            <DeveloperSignalField />
+          </div>
+
           <ScrollProgress />
 
-          <I18nProvider>{children}</I18nProvider>
+          <I18nProvider>
+            <div className="relative z-10">
+              {children}
+            </div>
+          </I18nProvider>
+
           <BackToTop />
         </ThemeProvider>
       </body>

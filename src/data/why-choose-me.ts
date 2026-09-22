@@ -1,31 +1,42 @@
+// src/data/why-choose-me.ts
+
 import {
   Code2,
-  Database,
-  MonitorSmartphone,
-  Zap,
+  Layers3,
+  Server,
+  GraduationCap,
+  type LucideIcon,
 } from "lucide-react";
 
-export const whyChooseMe = {
+export interface WhyChooseMeFeature {
+  icon: LucideIcon;
+  titleKey: string;
+  descriptionKey: string;
+}
+
+export const whyChooseMe: {
+  features: WhyChooseMeFeature[];
+} = {
   features: [
     {
-      icon: Zap,
-      titleKey: "performanceFirst",
-      descriptionKey: "performanceFirstDescription",
-    },
-    {
       icon: Code2,
-      titleKey: "cleanArchitecture",
-      descriptionKey: "cleanArchitectureDescription",
+      titleKey: "cleanCode.title",
+      descriptionKey: "cleanCode.description",
     },
     {
-      icon: MonitorSmartphone,
-      titleKey: "responsiveDesign",
-      descriptionKey: "responsiveDesignDescription",
+      icon: Layers3,
+      titleKey: "productMinded.title",
+      descriptionKey: "productMinded.description",
     },
     {
-      icon: Database,
-      titleKey: "fullStackDevelopment",
-      descriptionKey: "fullStackDevelopmentDescription",
+      icon: Server,
+      titleKey: "realWorld.title",
+      descriptionKey: "realWorld.description",
+    },
+    {
+      icon: GraduationCap,
+      titleKey: "alwaysLearning.title",
+      descriptionKey: "alwaysLearning.description",
     },
   ],
 };

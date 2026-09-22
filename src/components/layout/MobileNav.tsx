@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, ArrowRight, FileText } from "lucide-react";
+import {
+  ArrowRight,
+  FileText,
+  Menu,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -21,6 +25,7 @@ export default function MobileNav() {
 
   return (
     <Sheet>
+      {/* Menu Button */}
       <SheetTrigger
         aria-label="Open navigation menu"
         className="inline-flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -28,6 +33,7 @@ export default function MobileNav() {
         <Menu className="size-5" />
       </SheetTrigger>
 
+      {/* Mobile Navigation */}
       <SheetContent
         side="right"
         className="w-[300px] sm:w-[360px]"
@@ -63,14 +69,18 @@ export default function MobileNav() {
 
           {/* Language */}
           <div className="flex items-center justify-between rounded-lg px-4 py-3">
-            <span className="text-sm font-medium">Language</span>
+            <span className="text-sm font-medium">
+              Language
+            </span>
 
             <LanguageToggle />
           </div>
 
           {/* Theme */}
           <div className="flex items-center justify-between rounded-lg px-4 py-3">
-            <span className="text-sm font-medium">Theme</span>
+            <span className="text-sm font-medium">
+              Theme
+            </span>
 
             <ThemeToggle />
           </div>
@@ -79,6 +89,7 @@ export default function MobileNav() {
           <Link
             href="/resume/Nakibul-Islam-Resume.pdf"
             target="_blank"
+            rel="noopener noreferrer"
             className="mt-2 flex items-center justify-center gap-2 rounded-lg border border-border px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           >
             <FileText className="size-4" />

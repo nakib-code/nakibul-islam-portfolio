@@ -3,29 +3,32 @@
 import Link from "next/link";
 import { ArrowUpRight, GitBranch, Mail } from "lucide-react";
 import { LiaLinkedin } from "react-icons/lia";
+import { useTranslation } from "react-i18next";
 
 const socials = [
   {
-    label: "GitHub",
-    description: "Code & projects",
-    href: "https://github.com/nakib-code",
+    id: "github",
+    href: "https://github.com/nakibdev",
     icon: GitBranch,
+    external: true,
   },
   {
-    label: "LinkedIn",
-    description: "Professional network",
-    href: "https://www.linkedin.com/",
+    id: "linkedin",
+    href: "https://www.linkedin.com/in/nakibdev/",
     icon: LiaLinkedin,
+    external: true,
   },
   {
-    label: "Email",
-    description: "Let's talk",
-    href: "mailto:your@email.com",
+    id: "email",
+    href: "mailto:office.nakib@gmail.com",
     icon: Mail,
+    external: false,
   },
 ];
 
 export default function ContactSocials() {
+  const { t } = useTranslation("common");
+
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       {socials.map((social) => {
@@ -33,10 +36,10 @@ export default function ContactSocials() {
 
         return (
           <Link
-            key={social.label}
+            key={social.id}
             href={social.href}
-            target={social.href.startsWith("http") ? "_blank" : undefined}
-            rel={social.href.startsWith("http") ? "noreferrer" : undefined}
+            target={social.external ? "_blank" : undefined}
+            rel={social.external ? "noreferrer" : undefined}
             className="group flex items-center justify-between rounded-2xl border border-border bg-card/50 p-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-primary/5"
           >
             <div className="flex items-center gap-3">
@@ -45,9 +48,12 @@ export default function ContactSocials() {
               </div>
 
               <div>
-                <p className="text-sm font-semibold">{social.label}</p>
+                <p className="text-sm font-semibold">
+                  {t(`contact.socials.${social.id}.label`)}
+                </p>
+
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  {social.description}
+                  {t(`contact.socials.${social.id}.description`)}
                 </p>
               </div>
             </div>

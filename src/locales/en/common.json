@@ -1,182 +1,346 @@
 {
   "nav": {
+    "home": "Home",
     "about": "About",
     "projects": "Projects",
     "services": "Services",
+    "experience": "Experience",
     "contact": "Contact",
-    "websiteStore": "Website Store",
-    "resume": "View Resume"
+    "websiteStore": "Website Store"
   },
 
   "hero": {
-    "badge": "Available for opportunities",
-    "greeting": "Hi, I'm Nakibul Islam",
-    "title": "Full Stack Developer",
-    "description": "I build modern, scalable, and user-focused web applications with Next.js, React, TypeScript, and Node.js.",
+    "badge": "FULL STACK DEVELOPER",
+    "greeting": "Hello, I'm",
+    "name": "Nakibul Islam",
+    "title": "I build modern web applications.",
+    "description": "I'm a full stack developer who loves building modern, fast, and scalable web applications.",
     "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
     "downloadResume": "Download Resume",
-    "availableForWork": "Available for Work"
+    "scrollDown": "Scroll Down",
+    "availableForWork": "Available for work"
   },
 
   "about": {
-    "badge": "About Me",
-    "title": "Building scalable digital products with modern web technologies.",
-    "description": "I'm Nakibul Islam, a Full Stack Developer focused on building fast, scalable, and user-friendly web applications.",
+    "role": "Full Stack Developer",
+    "name": "Nakibul Islam",
+    "badge": "ABOUT ME",
+    "title": "Turning ideas into reality through code.",
+    "description": "I'm a full stack developer passionate about building beautiful and functional digital products using modern web technologies.",
+    "descriptionTwo": "I enjoy working across the entire development process, from frontend interfaces to backend systems and databases.",
 
-    "story": "I'm Nakibul Islam, a Full Stack Developer passionate about building fast, scalable, and user-friendly web applications. I enjoy transforming ideas into production-ready digital products using modern technologies and clean architecture.",
-
-    "mission": "My goal is to build high-quality software that delivers exceptional user experiences while following modern engineering best practices.",
-
-    "location": "Bangladesh",
-    "availability": "Available for Work",
-    "workType": "Remote • Freelance • Full-Time",
-
-    "focusTitle": "What I Focus On",
-
-    "focus": [
-      "Scalable Web Applications",
-      "Clean Architecture",
-      "REST API Development",
-      "Performance Optimization"
-    ],
+    "location": "Based in Bangladesh",
+    "availability": "Available for work",
+    "workType": "Full Stack Developer",
 
     "frontend": "Frontend",
-    "backend": "Backend",
-    "database": "Database",
+    "frontendStack": "React · Next.js · TypeScript · Tailwind CSS",
 
-    "footer": "Building scalable, modern and production-ready web applications with clean architecture and exceptional user experience.",
+    "backend": "Backend",
+    "backendStack": "Node.js · Express.js",
+
+    "database": "Database",
+    "databaseStack": "PostgreSQL · MongoDB · Prisma",
+
+    "footer": "Focused on building clean, reliable, and meaningful digital experiences.",
+
+    "story": "I started my development journey with a curiosity about how websites work. Over time, that curiosity turned into a passion for building complete web applications, from frontend interfaces to backend systems and databases.",
+
+    "mission": "My goal is to build software that is not only visually polished, but also fast, maintainable, scalable, and useful.",
+
+    "focusTitle": "What I focus on",
+
+    "focus": [
+      "Building modern and responsive web applications",
+      "Writing clean and maintainable code",
+      "Creating scalable full-stack solutions"
+    ],
 
     "stats": {
+      "projects": "Projects",
+      "technologies": "Technologies",
+      "experience": "Years of Experience",
       "projectsBuilt": "Projects Built",
-      "development": "Development",
-      "toWork": "To Work",
-      "architecture": "Architecture",
       "fullStack": "Full Stack",
+      "development": "Development",
       "open": "Open",
-      "clean": "Clean"
+      "toWork": "To Work",
+      "clean": "Clean",
+      "architecture": "Architecture"
     }
   },
 
   "whyChooseMe": {
-  "badge": "Why Choose Me",
-  "title": "Building reliable digital products that scale.",
-  "description": "I build fast, scalable, and user-focused applications using modern technologies and clean architecture.",
+    "badge": "HOW I WORK",
+    "title": "Built with purpose.",
+    "description": "I care about more than making things look good. I focus on clean code, real problems, and products that are built to last.",
 
-  "performanceFirst": "Performance First",
-  "performanceFirstDescription": "Optimized applications focused on speed, SEO, accessibility and excellent user experience.",
+    "cleanCode": {
+      "title": "Clean & Maintainable",
+      "description": "I write readable and reusable code with a structure that stays easy to understand as the project grows."
+    },
 
-  "cleanArchitecture": "Clean Architecture",
-  "cleanArchitectureDescription": "Reusable components, scalable structure and maintainable code for long-term projects.",
+    "productMinded": {
+      "title": "Product-Minded",
+      "description": "I think beyond the interface — considering user flow, performance, backend logic, and the actual problem behind the product."
+    },
 
-  "responsiveDesign": "Responsive Design",
-  "responsiveDesignDescription": "Pixel-perfect interfaces that work beautifully across desktop, tablet and mobile devices.",
+    "realWorld": {
+      "title": "Built for Real Use",
+      "description": "I build more than demos — authentication, APIs, dashboards, payments, and complete user workflows."
+    },
 
-  "fullStackDevelopment": "Full Stack Development",
-  "fullStackDevelopmentDescription": "Experienced with frontend, backend, databases, authentication and deployment workflows."
-},
+    "alwaysLearning": {
+      "title": "Always Improving",
+      "description": "I keep learning, experimenting, and improving the way I build modern web applications."
+    },
 
-"skills": {
-  "badge": "Skills",
-  "title": "My technical skills & development stack.",
-  "description": "Explore my technical stack through an interactive terminal. Select a category to see the technologies I work with.",
+    "approach": "MY APPROACH",
+    "bottomLabel": "Less decoration. More intention."
+  },
 
-  "categories": {
+  "skills": {
+    "badge": "SKILLS",
+    "title": "Technologies I work with.",
+    "description": "I work with a range of frontend, backend, and database technologies to build modern web applications.",
+
     "frontend": "Frontend",
     "backend": "Backend",
     "database": "Database",
-    "tools": "Tools"
-  },
+    "tools": "Tools",
 
-  "terminal": {
-    "systemStatus": "System Status",
-    "online": "ONLINE",
-    "commands": "Commands",
-    "skillsLoaded": "Skills Loaded",
-    "commandMatrix": "Trigger Command Matrix",
-    "clear": "Clear",
-    "typewriterFrequency": "Typewriter Frequency",
-    "wipe": "Wipe Terminal",
-
-    "react": "• React.js       : component-based UI development",
-    "nextjs": "• Next.js        : production React framework",
-    "typescript": "• TypeScript     : type-safe JavaScript development",
-    "javascript": "• JavaScript     : modern ES6+ development",
-    "tailwind": "• Tailwind CSS   : utility-first styling",
-    "shadcn": "• Shadcn UI      : reusable UI components",
-
-    "nodejs": "• Node.js        : server-side JavaScript runtime",
-    "express": "• Express.js     : REST API development",
-    "restApi": "• REST API       : scalable API architecture",
-    "jwt": "• JWT            : authentication & authorization",
-    "zod": "• Zod            : schema validation",
-
-    "postgresql": "• PostgreSQL     : relational database",
-    "mongodb": "• MongoDB        : NoSQL database",
-    "prisma": "• Prisma         : type-safe ORM",
-    "neon": "• Neon           : serverless PostgreSQL",
-
-    "git": "• Git            : version control",
-    "github": "• GitHub         : source code management",
-    "docker": "• Docker         : containerization",
-    "vercel": "• Vercel         : deployment platform",
-    "postman": "• Postman        : API testing",
-    "figma": "• Figma          : UI design"
-  }
-},
-"projects": {
-  "badge": "Featured Projects",
-  "title": "Production-ready applications I've built.",
-  "description": "A selection of projects demonstrating my experience in full-stack development, clean architecture, authentication, dashboards and modern UI.",
-
-  "caseStudy": "Case Study",
-  "overview": "Overview",
-  "technologies": "Technologies",
-  "keyFeatures": "Key Features",
-  "liveDemo": "Live Demo",
-  "github": "GitHub",
-  "viewCaseStudy": "View Case Study",
-  "closeCaseStudy": "Close project case study",
-  "previousImage": "Previous project image",
-  "nextImage": "Next project image",
-  "viewImage": "View project image",
-  "viewCaseStudyAria": "View {{title}} case study",
-
-  "status": {
-    "production": "Production Ready",
-    "progress": "In Progress"
-  },
-
-  "items": {
-    "nakivo": {
-      "title": "Nakivo",
-      "shortDescription": "Modern Full Stack Ecommerce Platform",
-      "description": "A scalable ecommerce application built with Next.js App Router featuring authentication, admin dashboard, product management and responsive design.",
-
-      "features": [
-        "Authentication",
-        "Admin Dashboard",
-        "Product Management",
-        "Responsive UI"
-      ]
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "tools": "Tools"
     },
 
-    "fixitnow": {
-      "title": "FixItNow",
-      "shortDescription": "Home Service Marketplace",
-      "description": "A full-stack marketplace connecting customers with technicians including booking, payment, dashboard and role-based authentication.",
+    "terminal": {
+      "react": "React",
+      "nextjs": "Next.js",
+      "typescript": "TypeScript",
+      "javascript": "JavaScript",
+      "tailwind": "Tailwind CSS",
+      "shadcn": "Shadcn UI",
 
-      "features": [
-        "Booking System",
-        "SSLCommerz Payment",
-        "Role Based Dashboard",
-        "Reviews"
-      ]
+      "nodejs": "Node.js",
+      "express": "Express.js",
+      "restApi": "REST API",
+      "jwt": "JWT",
+
+      "postgresql": "PostgreSQL",
+      "mongodb": "MongoDB",
+      "prisma": "Prisma ORM",
+
+      "git": "Git",
+      "github": "GitHub",
+      "docker": "Docker",
+      "vercel": "Vercel",
+      "postman": "Postman",
+      "figma": "Figma",
+
+      "systemStatus": "System Status",
+      "online": "Online",
+      "commands": "Commands",
+      "skillsLoaded": "Skills Loaded",
+      "commandMatrix": "Command Matrix",
+      "clear": "Clear",
+      "wipe": "Wipe Terminal",
+      "typewriterFrequency": "Typewriter Frequency"
     }
-  }
-},
+  },
+
+  "projects": {
+    "badge": "MY PROJECTS",
+    "title": "Projects I've built.",
+    "description": "A collection of full stack and web projects built to solve real-world problems.",
+
+    "status": {
+      "production": "Production Ready",
+      "progress": "In Progress"
+    },
+
+    "buttons": {
+      "liveDemo": "Live Demo",
+      "sourceCode": "Source Code",
+      "caseStudy": "Case Study",
+      "viewProject": "View Project"
+    },
+
+    "items": {
+      "fixitnow": {
+        "title": "FixItNow",
+        "shortDescription": "A full-stack home service marketplace.",
+        "description": "A home service marketplace where customers can find and book services, while technicians can manage bookings and administrators can manage the platform.",
+        "features": [
+          "JWT authentication with role-based access",
+          "Service and category management",
+          "Booking and review system",
+          "SSLCommerz payment integration"
+        ]
+      },
+      "nakivo": {
+        "title": "Nakivo",
+        "shortDescription": "A modern full-stack web application built with Next.js and MongoDB.",
+        "description": "A full-stack web application focused on delivering a modern, responsive, and user-friendly experience with a scalable architecture.",
+        "features": [
+          "Modern and responsive user interface",
+          "Full-stack application architecture",
+          "MongoDB database integration",
+          "State management with Redux Toolkit"
+        ]
+      }
+
+    }
+  },
+
   "services": {
-    "badge": "Services",
-    "title": "Solutions built around your business needs.",
-    "description": "I help businesses and individuals build modern, scalable, and user-friendly web applications with the right technologies."
+    "badge": "SERVICES",
+    "title": "Services I provide.",
+    "description": "I build modern, fast, and reliable web solutions for your business or ideas.",
+    "technologies": "Technologies",
+
+    "items": {
+      "custom-website": {
+        "title": "Custom Website",
+        "description": "I build modern, responsive, and user-friendly websites tailored to your needs."
+      },
+
+      "ecommerce": {
+        "title": "E-commerce Development",
+        "description": "I build complete e-commerce systems with products, cart, orders, payments, and admin features."
+      },
+
+      "full-stack": {
+        "title": "Full Stack Development",
+        "description": "I build complete web applications including frontend, backend, APIs, and databases."
+      },
+
+      "redesign-fixing": {
+        "title": "Redesign & Bug Fixing",
+        "description": "I modernize existing websites and fix bugs, performance issues, and other technical problems."
+      }
+    },
+
+    "cta": {
+      "title": "Want to discuss your project?",
+      "description": "Share your idea with me. We can work together to turn it into reality.",
+      "button": "Let's Talk"
+    }
+  },
+
+  "experience": {
+    "badge": "EXPERIENCE",
+    "title": "My development journey.",
+    "description": "A brief look at my learning and development journey through different stages and projects.",
+    "current": "Current",
+
+    "items": {
+      "web-development": {
+        "title": "Started Web Development",
+        "organization": "Self Learning",
+        "description": "Started learning the fundamentals of web development with HTML, CSS, and JavaScript."
+      },
+
+      "full-stack-development": {
+        "title": "Full Stack Development",
+        "organization": "Programming & Projects",
+        "description": "Started building full stack web applications using React, Node.js, Express.js, and MongoDB."
+      },
+
+      "advanced-full-stack": {
+        "title": "Advanced Full Stack",
+        "organization": "Backend & Production",
+        "description": "Worked with technologies including TypeScript, PostgreSQL, Prisma, JWT, and payment gateways."
+      },
+
+      "nextjs-development": {
+        "title": "Next.js Development",
+        "organization": "Modern Web Applications",
+        "description": "Building more modern, fast, and scalable web applications using Next.js and TypeScript."
+      },
+
+      "production-products": {
+        "title": "Production Projects",
+        "organization": "Full Stack Development",
+        "description": "Working on production-ready full stack projects and deploying applications for real-world users."
+      }
+    }
+  },
+
+  "contact": {
+    "badge": "GET IN TOUCH",
+    "title": "Let's build something great together.",
+    "description": "Have a project in mind, a job opportunity, or just want to connect? Feel free to reach out. I'm always open to discussing new ideas and opportunities.",
+
+    "availability": {
+      "status": "AVAILABLE FOR WORK",
+      "titleLineOne": "Let's work",
+      "titleLineTwo": "together.",
+      "description": "I'm currently open to full-time opportunities, freelance projects, and collaborations where I can build meaningful digital products.",
+
+      "items": {
+        "fullTime": {
+          "title": "Full-time",
+          "description": "Open to developer opportunities"
+        },
+
+        "freelance": {
+          "title": "Freelance",
+          "description": "Available for interesting projects"
+        },
+
+        "remote": {
+          "title": "Remote",
+          "description": "Open to international collaboration"
+        }
+      },
+
+      "location": "Based in Bangladesh · Available worldwide"
+    },
+
+    "socials": {
+      "github": {
+        "label": "GitHub",
+        "description": "Code & projects"
+      },
+
+      "linkedin": {
+        "label": "LinkedIn",
+        "description": "Professional network"
+      },
+
+      "email": {
+        "label": "Email",
+        "description": "Let's talk"
+      }
+    },
+
+    "terminal": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "sending": "Sending...",
+      "sendButton": "SEND MESSAGE",
+      "successMessage": "Message sent successfully.",
+      "successTitle": "Thanks for reaching out!",
+      "successDescription": "I appreciate your message. I'll get back to you as soon as possible.",
+      "sendAnother": "SEND ANOTHER MESSAGE"
+    }
+  },
+
+  "footer": {
+    "titleLineOne": "Thanks for",
+    "titleLineTwo": "stopping by.",
+    "description": "Every visit, every opportunity, and every conversation means a lot to me. I truly appreciate your time and respect your interest in my work.",
+    "descriptionTwo": "If you have an idea, an opportunity, or simply want to say hello, I'd love to hear from you.",
+    "button": "Let's Talk",
+    "role": "Full Stack Developer",
+    "builtWith": "Built with"
   }
 }

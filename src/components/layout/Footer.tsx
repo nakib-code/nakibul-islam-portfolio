@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, ArrowUp, Mail } from "lucide-react";
+import { Heart, Mail } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+
 const hearts = [
   { left: "8%", delay: 0, duration: 5, size: 12 },
   { left: "18%", delay: 1.2, duration: 6, size: 10 },
@@ -17,38 +19,33 @@ const hearts = [
 
 const socialLinks = [
   {
+    id: "github",
     label: "GitHub",
     href: "https://github.com/nakib-code",
     icon: FaGithub,
+    external: true,
   },
   {
+    id: "linkedin",
     label: "LinkedIn",
-    href: "https://www.linkedin.com",
+    href: "https://www.linkedin.com/in/nakibdev/",
     icon: FaLinkedinIn,
+    external: true,
   },
   {
+    id: "email",
     label: "Email",
-    href: "mailto:your@email.com",
+    href: "mailto:office.nakib@gmail.com",
     icon: Mail,
+    external: false,
   },
 ];
 
 export default function Footer() {
-  return (
-    <footer className="relative overflow-hidden border-t border-border bg-background">
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-primary/5 blur-[150px]" />
+  const { t } = useTranslation("common");
 
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right,currentColor 1px,transparent 1px),linear-gradient(to bottom,currentColor 1px,transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-      </div>
+  return (
+    <footer className="relative overflow-hidden border-t border-border ">
 
       {/* Floating Hearts */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -109,35 +106,29 @@ export default function Footer() {
             }}
             className="mx-auto mb-7 flex size-14 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary shadow-[0_0_40px_rgba(99,102,241,0.15)]"
           >
-            <Heart
-              className="size-6"
-              fill="currentColor"
-            />
+            <Heart className="size-6" fill="currentColor" />
           </motion.div>
 
           {/* Badge */}
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-            Thank You For Being Here
+            {t("contact.badge")}
           </span>
 
           {/* Heading */}
           <h2 className="mt-5 font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            Thanks for
+            {t("footer.titleLineOne")}
             <span className="block text-primary">
-              stopping by.
+              {t("footer.titleLineTwo")}
             </span>
           </h2>
 
           {/* Message */}
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8">
-            Every visit, every opportunity, and every conversation
-            means a lot to me. I truly appreciate your time and
-            respect your interest in my work.
+            {t("footer.description")}
           </p>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
-            If you have an idea, an opportunity, or simply want to
-            say hello, I&apos;d love to hear from you.
+            {t("footer.descriptionTwo")}
           </p>
 
           {/* CTA */}
@@ -152,7 +143,7 @@ export default function Footer() {
               href="#contact"
               className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30"
             >
-              Let&apos;s Talk
+              {t("footer.button")}
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
@@ -187,7 +178,7 @@ export default function Footer() {
             </p>
 
             <p className="mt-1 text-xs text-muted-foreground">
-              Full-Stack Developer
+              {t("footer.role")}
             </p>
           </div>
 
@@ -198,11 +189,11 @@ export default function Footer() {
 
               return (
                 <Link
-                  key={social.label}
+                  key={social.id}
                   href={social.href}
-                  target={social.label !== "Email" ? "_blank" : undefined}
+                  target={social.external ? "_blank" : undefined}
                   rel={
-                    social.label !== "Email"
+                    social.external
                       ? "noopener noreferrer"
                       : undefined
                   }
@@ -218,9 +209,11 @@ export default function Footer() {
           {/* Copyright */}
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <span>© 2026 Ahmed Nakib</span>
+
             <span>•</span>
+
             <span className="flex items-center gap-1">
-              Built with
+              {t("footer.builtWith")}
               <Heart
                 className="size-3 text-primary"
                 fill="currentColor"
@@ -235,8 +228,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="mt-10 flex justify-center"
-        >
-        </motion.div>
+        />
       </div>
     </footer>
   );

@@ -1,181 +1,341 @@
 {
   "nav": {
+    "home": "হোম",
     "about": "আমার সম্পর্কে",
     "projects": "প্রজেক্ট",
-    "services": "সেবাসমূহ",
+    "services": "সার্ভিস",
+    "experience": "অভিজ্ঞতা",
     "contact": "যোগাযোগ",
-    "websiteStore": "ওয়েবসাইট স্টোর",
-    "resume": "রিজিউমে দেখুন"
+    "websiteStore": "ওয়েবসাইট স্টোর"
   },
 
   "hero": {
-    "badge": "সুযোগের জন্য প্রস্তুত",
-    "greeting": "হাই, আমি নাকিবুল ইসলাম",
-    "title": "ফুল স্ট্যাক ডেভেলপার",
-    "description": "Next.js, React, TypeScript এবং Node.js ব্যবহার করে আধুনিক, স্কেলযোগ্য এবং ব্যবহারবান্ধব ওয়েব অ্যাপ্লিকেশন তৈরি করি।",
+    "badge": "ফুল স্ট্যাক ডেভেলপার",
+    "greeting": "হ্যালো, আমি",
+    "name": "নাকিবুল ইসলাম",
+    "title": "আমি আধুনিক ওয়েব অ্যাপ্লিকেশন তৈরি করি।",
+    "description": "আমি একজন ফুল স্ট্যাক ডেভেলপার। আধুনিক, দ্রুত এবং স্কেলেবল ওয়েব অ্যাপ্লিকেশন তৈরি করতে ভালোবাসি।",
     "viewProjects": "প্রজেক্ট দেখুন",
+    "contactMe": "যোগাযোগ করুন",
     "downloadResume": "রিজিউমে ডাউনলোড করুন",
-    "availableForWork": "কাজের জন্য প্রস্তুত"
+    "scrollDown": "নিচে দেখুন",
+    "availableForWork": "কাজের জন্য উপলব্ধ"
   },
 
   "about": {
+    "role": "ফুল স্ট্যাক ডেভেলপার",
+  "name": "নাকিবুল ইসলাম",
     "badge": "আমার সম্পর্কে",
-    "title": "আধুনিক ওয়েব প্রযুক্তি দিয়ে স্কেলযোগ্য ডিজিটাল পণ্য তৈরি করি।",
-    "description": "আমি নাকিবুল ইসলাম, একজন Full Stack Developer। দ্রুত, স্কেলযোগ্য এবং ব্যবহারবান্ধব ওয়েব অ্যাপ্লিকেশন তৈরিতে কাজ করি।",
+    "title": "কোডের মাধ্যমে আইডিয়াকে বাস্তবে রূপ দিই।",
+    "description": "আমি একজন ফুল স্ট্যাক ডেভেলপার, যিনি আধুনিক ওয়েব প্রযুক্তি ব্যবহার করে সুন্দর ও কার্যকর ডিজিটাল প্রোডাক্ট তৈরি করতে আগ্রহী।",
+    "descriptionTwo": "ফ্রন্টএন্ড থেকে ব্যাকএন্ড এবং ডেটাবেস পর্যন্ত একটি সম্পূর্ণ প্রজেক্ট তৈরির প্রতিটি ধাপে কাজ করতে আমি স্বাচ্ছন্দ্যবোধ করি.",
 
-    "story": "আমি নাকিবুল ইসলাম, একজন Full Stack Developer। দ্রুত, স্কেলযোগ্য এবং ব্যবহারবান্ধব ওয়েব অ্যাপ্লিকেশন তৈরি করতে আগ্রহী। আধুনিক প্রযুক্তি এবং পরিষ্কার আর্কিটেকচার ব্যবহার করে আইডিয়াকে production-ready ডিজিটাল পণ্যে রূপ দিতে ভালোবাসি।",
-
-    "mission": "আধুনিক engineering best practices অনুসরণ করে এমন উচ্চমানের সফটওয়্যার তৈরি করা আমার লক্ষ্য, যা ব্যবহারকারীদের জন্য চমৎকার অভিজ্ঞতা নিশ্চিত করে।",
-
-    "location": "বাংলাদেশ",
-    "availability": "কাজের জন্য প্রস্তুত",
-    "workType": "রিমোট • ফ্রিল্যান্স • ফুল-টাইম",
-
-    "focusTitle": "যেসব বিষয়ে কাজ করি",
-
-    "focus": [
-      "স্কেলযোগ্য ওয়েব অ্যাপ্লিকেশন",
-      "ক্লিন আর্কিটেকচার",
-      "REST API ডেভেলপমেন্ট",
-      "পারফরম্যান্স অপটিমাইজেশন"
-    ],
+    "location": "বাংলাদেশে অবস্থান",
+    "availability": "কাজের জন্য উপলব্ধ",
+    "workType": "ফুল স্ট্যাক ডেভেলপার",
 
     "frontend": "ফ্রন্টএন্ড",
-    "backend": "ব্যাকএন্ড",
-    "database": "ডেটাবেস",
+    "frontendStack": "React · Next.js · TypeScript · Tailwind CSS",
 
-    "footer": "ক্লিন আর্কিটেকচার এবং চমৎকার user experience-এর মাধ্যমে স্কেলযোগ্য, আধুনিক এবং production-ready ওয়েব অ্যাপ্লিকেশন তৈরি করি।",
+    "backend": "ব্যাকএন্ড",
+    "backendStack": "Node.js · Express.js",
+
+    "database": "ডেটাবেস",
+    "databaseStack": "PostgreSQL · MongoDB · Prisma",
+
+    "footer": "পরিষ্কার, নির্ভরযোগ্য এবং অর্থবহ ডিজিটাল অভিজ্ঞতা তৈরিতে আমি মনোযোগী।",
+
+    "story": "ওয়েবসাইট কীভাবে কাজ করে—এই কৌতূহল থেকেই আমার ডেভেলপমেন্ট যাত্রা শুরু। সময়ের সাথে সেই কৌতূহল পূর্ণাঙ্গ ওয়েব অ্যাপ্লিকেশন তৈরির প্রতি আগ্রহে পরিণত হয়েছে। এখন আমি ফ্রন্টএন্ড থেকে শুরু করে ব্যাকএন্ড ও ডেটাবেস পর্যন্ত পুরো সিস্টেম নিয়ে কাজ করি।",
+
+    "mission": "আমার লক্ষ্য শুধু সুন্দর ইন্টারফেস তৈরি করা নয়; বরং দ্রুত, maintainable, scalable এবং বাস্তবে উপকারী সফটওয়্যার তৈরি করা।",
+
+    "focusTitle": "যে বিষয়গুলোতে আমি মনোযোগ দিই",
+
+    "focus": [
+      "আধুনিক ও responsive ওয়েব অ্যাপ্লিকেশন তৈরি করা",
+      "পরিষ্কার ও maintainable code লেখা",
+      "স্কেলেবল full-stack solution তৈরি করা"
+    ],
 
     "stats": {
-      "projectsBuilt": "প্রজেক্ট তৈরি",
-      "development": "ডেভেলপমেন্ট",
-      "toWork": "কাজের জন্য প্রস্তুত",
-      "architecture": "আর্কিটেকচার",
+      "projects": "প্রজেক্ট",
+      "technologies": "টেকনোলজি",
+      "experience": "অভিজ্ঞতার বছর",
+      "projectsBuilt": "তৈরি করা প্রজেক্ট",
       "fullStack": "ফুল স্ট্যাক",
-      "open": "প্রস্তুত",
-      "clean": "ক্লিন"
+      "development": "ডেভেলপমেন্ট",
+      "open": "উন্মুক্ত",
+      "toWork": "কাজের জন্য",
+      "clean": "পরিষ্কার",
+      "architecture": "আর্কিটেকচার"
     }
   },
 
   "whyChooseMe": {
-  "badge": "কেন আমাকে বেছে নেবেন",
-  "title": "স্কেলযোগ্য ও নির্ভরযোগ্য ডিজিটাল পণ্য তৈরি করি।",
-  "description": "আধুনিক প্রযুক্তি এবং পরিষ্কার আর্কিটেকচার ব্যবহার করে দ্রুত, স্কেলযোগ্য এবং ব্যবহারবান্ধব অ্যাপ্লিকেশন তৈরি করি।",
+    "badge": "আমি যেভাবে কাজ করি",
+    "title": "উদ্দেশ্য নিয়ে তৈরি করি।",
+    "description": "শুধু দেখতে ভালো হলেই আমি সন্তুষ্ট নই। পরিষ্কার কোড, বাস্তব সমস্যার সমাধান এবং দীর্ঘমেয়াদে ব্যবহারযোগ্য প্রোডাক্ট তৈরিতে আমি গুরুত্ব দিই।",
 
-  "performanceFirst": "পারফরম্যান্সকে গুরুত্ব দিই",
-  "performanceFirstDescription": "দ্রুত গতি, SEO, accessibility এবং চমৎকার user experience-এর জন্য অপটিমাইজড অ্যাপ্লিকেশন তৈরি করি।",
+    "cleanCode": {
+      "title": "পরিষ্কার ও Maintainable",
+      "description": "আমি এমন readable এবং reusable code লিখি, যাতে project বড় হলেও structure সহজে বোঝা ও maintain করা যায়।"
+    },
 
-  "cleanArchitecture": "ক্লিন আর্কিটেকচার",
-  "cleanArchitectureDescription": "দীর্ঘমেয়াদি প্রজেক্টের জন্য reusable components, scalable structure এবং maintainable code ব্যবহার করি।",
+    "productMinded": {
+      "title": "Product-Minded",
+      "description": "আমি শুধু interface নিয়ে ভাবি না — user flow, performance, backend logic এবং product-এর আসল problem নিয়েও চিন্তা করি।"
+    },
 
-  "responsiveDesign": "রেসপন্সিভ ডিজাইন",
-  "responsiveDesignDescription": "Desktop, tablet এবং mobile—সব ডিভাইসে সুন্দরভাবে কাজ করে এমন pixel-perfect interface তৈরি করি।",
+    "realWorld": {
+      "title": "বাস্তব ব্যবহারের জন্য তৈরি",
+      "description": "আমি শুধু demo তৈরি করি না — authentication, API, dashboard, payment এবং complete user workflow নিয়ে কাজ করি।"
+    },
 
-  "fullStackDevelopment": "ফুল স্ট্যাক ডেভেলপমেন্ট",
-  "fullStackDevelopmentDescription": "Frontend, backend, database, authentication এবং deployment workflow নিয়ে কাজ করার অভিজ্ঞতা রয়েছে।"
-},
-"skills": {
-  "badge": "দক্ষতা",
-  "title": "আমার টেকনিক্যাল স্কিল ও ডেভেলপমেন্ট স্ট্যাক।",
-  "description": "একটি ইন্টার‌্যাক্টিভ টার্মিনালের মাধ্যমে আমার টেকনোলজি স্ট্যাক দেখুন। একটি ক্যাটাগরি নির্বাচন করে আমি যেসব প্রযুক্তি নিয়ে কাজ করি সেগুলো দেখুন।",
+    "alwaysLearning": {
+      "title": "সবসময় Improve করছি",
+      "description": "আমি নিয়মিত শিখি, experiment করি এবং modern web application তৈরির process আরও ভালো করার চেষ্টা করি।"
+    },
 
-  "categories": {
+    "approach": "আমার পদ্ধতি",
+    "bottomLabel": "কম সাজসজ্জা। বেশি উদ্দেশ্য।"
+  },
+
+  "skills": {
+    "badge": "স্কিলস",
+    "title": "যে টেকনোলজিগুলো দিয়ে কাজ করি।",
+    "description": "মডার্ন ওয়েব অ্যাপ্লিকেশন তৈরি করার জন্য বিভিন্ন ফ্রন্টএন্ড, ব্যাকএন্ড এবং ডেটাবেস টেকনোলজির সাথে কাজ করি।",
+
     "frontend": "ফ্রন্টএন্ড",
     "backend": "ব্যাকএন্ড",
     "database": "ডেটাবেস",
-    "tools": "টুলস"
-  },
+    "tools": "টুলস",
 
-  "terminal": {
-    "systemStatus": "সিস্টেম স্ট্যাটাস",
-    "online": "অনলাইন",
-    "commands": "কমান্ড",
-    "skillsLoaded": "লোড হওয়া স্কিল",
-    "commandMatrix": "কমান্ড নির্বাচন করুন",
-    "clear": "ক্লিয়ার",
-    "typewriterFrequency": "টাইপরাইটার গতি",
-    "wipe": "টার্মিনাল ক্লিয়ার করুন",
-
-    "react": "• React.js       : component-based UI development",
-    "nextjs": "• Next.js        : production React framework",
-    "typescript": "• TypeScript     : type-safe JavaScript development",
-    "javascript": "• JavaScript     : modern ES6+ development",
-    "tailwind": "• Tailwind CSS   : utility-first styling",
-    "shadcn": "• Shadcn UI      : reusable UI components",
-
-    "nodejs": "• Node.js        : server-side JavaScript runtime",
-    "express": "• Express.js     : REST API development",
-    "restApi": "• REST API       : scalable API architecture",
-    "jwt": "• JWT            : authentication & authorization",
-    "zod": "• Zod            : schema validation",
-
-    "postgresql": "• PostgreSQL     : relational database",
-    "mongodb": "• MongoDB        : NoSQL database",
-    "prisma": "• Prisma         : type-safe ORM",
-    "neon": "• Neon           : serverless PostgreSQL",
-
-    "git": "• Git            : version control",
-    "github": "• GitHub         : source code management",
-    "docker": "• Docker         : containerization",
-    "vercel": "• Vercel         : deployment platform",
-    "postman": "• Postman         : API testing",
-    "figma": "• Figma          : UI design"
-  }
-},
-"projects": {
-  "badge": "নির্বাচিত প্রজেক্ট",
-  "title": "আমি তৈরি করা production-ready অ্যাপ্লিকেশন।",
-  "description": "Full-stack development, clean architecture, authentication, dashboard এবং modern UI নিয়ে আমার অভিজ্ঞতার কিছু উল্লেখযোগ্য প্রজেক্ট।",
-
-  "caseStudy": "কেস স্টাডি",
-  "overview": "সংক্ষিপ্ত বিবরণ",
-  "technologies": "টেকনোলজি",
-  "keyFeatures": "মূল ফিচার",
-  "liveDemo": "লাইভ ডেমো",
-  "github": "GitHub",
-  "viewCaseStudy": "কেস স্টাডি দেখুন",
-  "closeCaseStudy": "প্রজেক্ট কেস স্টাডি বন্ধ করুন",
-  "previousImage": "আগের প্রজেক্ট ছবি",
-  "nextImage": "পরের প্রজেক্ট ছবি",
-  "viewImage": "প্রজেক্ট ছবি দেখুন",
-  "viewCaseStudyAria": "{{title}} কেস স্টাডি দেখুন",
-
-  "status": {
-    "production": "Production Ready",
-    "progress": "চলমান"
-  },
-
-  "items": {
-    "nakivo": {
-      "title": "Nakivo",
-      "shortDescription": "আধুনিক ফুল স্ট্যাক ই-কমার্স প্ল্যাটফর্ম",
-      "description": "Next.js App Router দিয়ে তৈরি একটি স্কেলযোগ্য ই-কমার্স অ্যাপ্লিকেশন, যেখানে authentication, admin dashboard, product management এবং responsive design রয়েছে।",
-
-      "features": [
-        "Authentication",
-        "Admin Dashboard",
-        "Product Management",
-        "Responsive UI"
-      ]
+    "categories": {
+      "frontend": "ফ্রন্টএন্ড",
+      "backend": "ব্যাকএন্ড",
+      "database": "ডেটাবেস",
+      "tools": "টুলস"
     },
 
-    "fixitnow": {
-      "title": "FixItNow",
-      "shortDescription": "হোম সার্ভিস মার্কেটপ্লেস",
-      "description": "Customer এবং technician-দের সংযুক্ত করার জন্য তৈরি একটি full-stack marketplace, যেখানে booking, payment, dashboard এবং role-based authentication রয়েছে।",
+    "terminal": {
+      "react": "React",
+      "nextjs": "Next.js",
+      "typescript": "TypeScript",
+      "javascript": "JavaScript",
+      "tailwind": "Tailwind CSS",
+      "shadcn": "Shadcn UI",
 
-      "features": [
-        "Booking System",
-        "SSLCommerz Payment",
-        "Role Based Dashboard",
-        "Reviews"
-      ]
+      "nodejs": "Node.js",
+      "express": "Express.js",
+      "restApi": "REST API",
+      "jwt": "JWT",
+
+      "postgresql": "PostgreSQL",
+      "mongodb": "MongoDB",
+      "prisma": "Prisma ORM",
+
+      "git": "Git",
+      "github": "GitHub",
+      "docker": "Docker",
+      "vercel": "Vercel",
+      "postman": "Postman",
+      "figma": "Figma",
+
+      "systemStatus": "সিস্টেম স্ট্যাটাস",
+      "online": "অনলাইন",
+      "commands": "কমান্ড",
+      "skillsLoaded": "লোড হওয়া স্কিল",
+      "commandMatrix": "কমান্ড ম্যাট্রিক্স",
+      "clear": "ক্লিয়ার",
+      "wipe": "টার্মিনাল ক্লিয়ার",
+      "typewriterFrequency": "টাইপিং স্পিড"
     }
-  }
-},
+  },
+
+  "projects": {
+    "badge": "আমার প্রজেক্ট",
+    "title": "যে প্রজেক্টগুলো তৈরি করেছি।",
+    "description": "বাস্তব সমস্যা সমাধানের জন্য তৈরি করা কিছু ফুল স্ট্যাক ও ওয়েব প্রজেক্টের সংগ্রহ।",
+
+    "status": {
+      "production": "প্রোডাকশন রেডি",
+      "progress": "চলমান"
+    },
+
+    "buttons": {
+      "liveDemo": "লাইভ ডেমো",
+      "sourceCode": "সোর্স কোড",
+      "caseStudy": "কেস স্টাডি",
+      "viewProject": "প্রজেক্ট দেখুন"
+    },
+
+    "items": {
+      "fixitnow": {
+         "title": "FixItNow",
+         "shortDescription": "একটি ফুল-স্ট্যাক হোম সার্ভিস মার্কেটপ্লেস।",
+         "description": "একটি হোম সার্ভিস মার্কেটপ্লেস যেখানে কাস্টমাররা বিভিন্ন সার্ভিস খুঁজে বুক করতে পারে, টেকনিশিয়ানরা বুকিং ম্যানেজ করতে পারে এবং অ্যাডমিন পুরো প্ল্যাটফর্ম পরিচালনা করতে পারে।",
+         "features": [
+           "JWT authentication ও role-based access",
+           "সার্ভিস ও ক্যাটাগরি ম্যানেজমেন্ট",
+           "বুকিং ও রিভিউ সিস্টেম",
+           "SSLCommerz payment integration"
+         ]
+       },
+     "nakivo": {
+        "title": "Nakivo",
+        "shortDescription": "Next.js এবং MongoDB দিয়ে তৈরি একটি আধুনিক ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন।",
+        "description": "একটি আধুনিক ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন, যেখানে responsive user interface, scalable architecture এবং smooth user experience-এর উপর গুরুত্ব দেওয়া হয়েছে।",
+        "features": [
+          "আধুনিক ও responsive user interface",
+          "Next.js ও TypeScript ভিত্তিক full-stack architecture",
+          "MongoDB database integration",
+          "Redux Toolkit দিয়ে state management"
+        ]
+      }
+    }
+  },
+
   "services": {
-    "badge": "সেবাসমূহ",
-    "title": "আপনার ব্যবসার প্রয়োজন অনুযায়ী তৈরি সমাধান।",
-    "description": "সঠিক প্রযুক্তি ব্যবহার করে ব্যবসা ও ব্যক্তিগত প্রয়োজনের জন্য আধুনিক, স্কেলযোগ্য এবং ব্যবহারবান্ধব ওয়েব অ্যাপ্লিকেশন তৈরি করি।"
+    "badge": "সার্ভিস",
+    "title": "আমি যেসব সার্ভিস দিই।",
+    "description": "আপনার ব্যবসা বা আইডিয়ার জন্য আধুনিক, দ্রুত এবং নির্ভরযোগ্য ওয়েব সলিউশন তৈরি করতে পারি।",
+    "technologies": "টেকনোলজি",
+
+    "items": {
+      "custom-website": {
+        "title": "কাস্টম ওয়েবসাইট",
+        "description": "আপনার প্রয়োজন অনুযায়ী আধুনিক, responsive এবং user-friendly ওয়েবসাইট তৈরি করি।"
+      },
+
+      "ecommerce": {
+        "title": "ই-কমার্স ডেভেলপমেন্ট",
+        "description": "প্রোডাক্ট, কার্ট, অর্ডার, পেমেন্ট এবং অ্যাডমিন ফিচারসহ সম্পূর্ণ ই-কমার্স সিস্টেম তৈরি করি।"
+      },
+
+      "full-stack": {
+        "title": "ফুল স্ট্যাক ডেভেলপমেন্ট",
+        "description": "ফ্রন্টএন্ড, ব্যাকএন্ড, API এবং ডেটাবেসসহ সম্পূর্ণ ওয়েব অ্যাপ্লিকেশন তৈরি করি।"
+      },
+
+      "redesign-fixing": {
+        "title": "রিডিজাইন ও বাগ ফিক্স",
+        "description": "পুরোনো ওয়েবসাইটকে আধুনিক করা এবং বিদ্যমান বাগ ও পারফরম্যান্স সমস্যা সমাধান করি।"
+      }
+    },
+
+    "cta": {
+      "title": "আপনার প্রজেক্ট নিয়ে কথা বলতে চান?",
+      "description": "আপনার আইডিয়া শেয়ার করুন। আমরা একসাথে সেটাকে বাস্তবে রূপ দিতে পারি।",
+      "button": "আলোচনা শুরু করুন"
+    }
+  },
+
+  "experience": {
+    "badge": "অভিজ্ঞতা",
+    "title": "আমার ডেভেলপমেন্ট জার্নি।",
+    "description": "সময় ও প্রজেক্টের সাথে সাথে আমার শেখা এবং কাজ করার অভিজ্ঞতার সংক্ষিপ্ত যাত্রা।",
+    "current": "বর্তমান",
+
+    "items": {
+      "web-development": {
+        "title": "ওয়েব ডেভেলপমেন্ট শুরু",
+        "organization": "Self Learning",
+        "description": "HTML, CSS এবং JavaScript ব্যবহার করে ওয়েব ডেভেলপমেন্টের মৌলিক বিষয়গুলো শেখা শুরু করি।"
+      },
+
+      "full-stack-development": {
+        "title": "ফুল স্ট্যাক ডেভেলপমেন্ট",
+        "organization": "Programming & Projects",
+        "description": "React, Node.js, Express.js এবং MongoDB ব্যবহার করে ফুল স্ট্যাক ওয়েব অ্যাপ্লিকেশন তৈরি করা শুরু করি।"
+      },
+
+      "advanced-full-stack": {
+        "title": "অ্যাডভান্সড ফুল স্ট্যাক",
+        "organization": "Backend & Production",
+        "description": "TypeScript, PostgreSQL, Prisma, JWT এবং পেমেন্ট গেটওয়ের মতো টেকনোলজি নিয়ে কাজ করেছি।"
+      },
+
+      "nextjs-development": {
+        "title": "Next.js ডেভেলপমেন্ট",
+        "organization": "Modern Web Applications",
+        "description": "Next.js এবং TypeScript ব্যবহার করে আরও আধুনিক, দ্রুত ও স্কেলেবল ওয়েব অ্যাপ্লিকেশন তৈরি করছি।"
+      },
+
+      "production-products": {
+        "title": "প্রোডাকশন প্রজেক্ট",
+        "organization": "Full Stack Development",
+        "description": "বাস্তব ব্যবহারকারীদের জন্য প্রোডাকশন-রেডি ফুল স্ট্যাক প্রজেক্ট তৈরি এবং ডেপ্লয় করার দিকে কাজ করছি।"
+      }
+    }
+  },
+
+  "contact": {
+    "badge": "যোগাযোগ করুন",
+    "title": "চলুন একসাথে দারুণ কিছু তৈরি করি।",
+    "description": "কোনো প্রজেক্টের পরিকল্পনা আছে, চাকরির সুযোগ দিতে চান, অথবা শুধু যোগাযোগ করতে চান? নির্দ্বিধায় মেসেজ করুন। নতুন আইডিয়া ও সুযোগ নিয়ে কথা বলতে আমি সবসময় আগ্রহী।",
+
+    "availability": {
+      "status": "কাজের জন্য উপলব্ধ",
+      "titleLineOne": "চলুন একসাথে",
+      "titleLineTwo": "কাজ করি।",
+      "description": "আমি বর্তমানে ফুল-টাইম চাকরি, ফ্রিল্যান্স প্রজেক্ট এবং এমন সহযোগিতার সুযোগের জন্য উন্মুক্ত, যেখানে অর্থবহ ডিজিটাল প্রোডাক্ট তৈরি করা যায়।",
+
+      "items": {
+        "fullTime": {
+          "title": "ফুল-টাইম",
+          "description": "ডেভেলপার হিসেবে সুযোগের জন্য উন্মুক্ত"
+        },
+        "freelance": {
+          "title": "ফ্রিল্যান্স",
+          "description": "আকর্ষণীয় প্রজেক্টের জন্য উপলব্ধ"
+        },
+        "remote": {
+          "title": "রিমোট",
+          "description": "আন্তর্জাতিকভাবে কাজ করতে আগ্রহী"
+        }
+      },
+
+      "location": "বাংলাদেশে অবস্থান · বিশ্বব্যাপী কাজের জন্য উপলব্ধ"
+    },
+
+    "socials": {
+      "github": {
+        "label": "GitHub",
+        "description": "কোড ও প্রজেক্ট"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "description": "প্রফেশনাল নেটওয়ার্ক"
+      },
+      "email": {
+        "label": "ইমেইল",
+        "description": "যোগাযোগ করুন"
+      }
+    },
+
+    "terminal": {
+      "name": "নাম",
+      "namePlaceholder": "আপনার নাম",
+      "email": "ইমেইল",
+      "emailPlaceholder": "আপনার ইমেইল",
+      "message": "মেসেজ",
+      "messagePlaceholder": "আপনার প্রজেক্ট সম্পর্কে বলুন...",
+      "sending": "পাঠানো হচ্ছে...",
+      "sendButton": "মেসেজ পাঠান",
+      "successMessage": "মেসেজ সফলভাবে পাঠানো হয়েছে।",
+      "successTitle": "যোগাযোগ করার জন্য ধন্যবাদ!",
+      "successDescription": "আপনার মেসেজের জন্য ধন্যবাদ। আমি যত দ্রুত সম্ভব আপনার সাথে যোগাযোগ করব।",
+      "sendAnother": "আরেকটি মেসেজ পাঠান"
+    }
+  },
+
+  "footer": {
+    "titleLineOne": "এখানে আসার জন্য",
+    "titleLineTwo": "ধন্যবাদ।",
+    "description": "আপনার প্রতিটি ভিজিট, সুযোগ এবং কথোপকথন আমার কাছে অনেক গুরুত্বপূর্ণ। আমার কাজের প্রতি আপনার সময় ও আগ্রহকে আমি সত্যিই মূল্য দিই।",
+    "descriptionTwo": "আপনার কোনো আইডিয়া, সুযোগ বা শুধু হ্যালো বলার ইচ্ছা থাকলে যোগাযোগ করুন। আপনার কাছ থেকে শুনতে আমি সবসময় আনন্দিত।",
+    "button": "কথা বলুন",
+    "role": "ফুল স্ট্যাক ডেভেলপার",
+    "builtWith": "ভালোবাসা দিয়ে তৈরি"
   }
 }

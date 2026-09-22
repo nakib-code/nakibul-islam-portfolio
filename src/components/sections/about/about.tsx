@@ -14,13 +14,13 @@ import AboutVisual from "./AboutVisual";
 const leftVariant: Variants = {
   hidden: {
     opacity: 0,
-    x: -50,
+    x: -30,
   },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.7,
+      duration: 0.65,
       ease: "easeOut",
     },
   },
@@ -29,14 +29,14 @@ const leftVariant: Variants = {
 const rightVariant: Variants = {
   hidden: {
     opacity: 0,
-    x: 50,
+    x: 30,
   },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.7,
-      delay: 0.15,
+      duration: 0.65,
+      delay: 0.1,
       ease: "easeOut",
     },
   },
@@ -50,38 +50,15 @@ export default function About() {
       id="about"
       className="relative overflow-hidden py-24 sm:py-32"
     >
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-
-        {/* Primary Glow */}
-        <div className="absolute left-0 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
-
-        {/* Secondary Glow */}
-        <div className="absolute bottom-0 right-0 h-[450px] w-[450px] translate-x-1/3 rounded-full bg-primary/5 blur-[130px]" />
-
-        {/* Bottom Fade */}
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
-      </div>
 
       <Container>
-        {/* Section Heading */}
         <SectionHeading
           badge={t("about.badge")}
           title={t("about.title")}
           description={t("about.description")}
         />
 
-        {/* Main Content */}
-        <div className="mt-16 grid gap-16 lg:grid-cols-2 lg:items-center">
+        <div className="mt-16 grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-20">
           {/* Visual */}
           <motion.div
             variants={leftVariant}
@@ -89,7 +66,7 @@ export default function About() {
             whileInView="visible"
             viewport={{
               once: true,
-              amount: 0.3,
+              amount: 0.25,
             }}
           >
             <AboutVisual />
@@ -102,14 +79,13 @@ export default function About() {
             whileInView="visible"
             viewport={{
               once: true,
-              amount: 0.3,
+              amount: 0.25,
             }}
           >
             <AboutContent />
           </motion.div>
         </div>
 
-        {/* Stats */}
         <AboutStats />
       </Container>
     </section>

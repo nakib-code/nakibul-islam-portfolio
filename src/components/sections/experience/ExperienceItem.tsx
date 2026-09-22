@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import type { ExperienceItem as ExperienceItemType } from "@/data/experience";
 
@@ -14,7 +15,13 @@ export default function ExperienceItem({
   item,
   index,
 }: ExperienceItemProps) {
+  const { t } = useTranslation("common");
+
   const isLeft = index % 2 === 0;
+
+  const title = t(
+    `experience.items.${item.id}.title`,
+  );
 
   return (
     <motion.article
@@ -43,12 +50,12 @@ export default function ExperienceItem({
         md:pl-0
       "
     >
-      {/* =========================================
-          TIMELINE DOT
-      ========================================= */}
-
+      {/* Timeline Dot */}
       <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
+        initial={{
+          scale: 0.5,
+          opacity: 0,
+        }}
         whileInView={{
           scale: 1,
           opacity: 1,
@@ -86,10 +93,7 @@ export default function ExperienceItem({
         />
       </motion.div>
 
-      {/* =========================================
-          CONTENT
-      ========================================= */}
-
+      {/* Content */}
       <div
         className={`md:w-[calc(50%-3rem)] ${
           isLeft ? "md:mr-auto" : "md:ml-auto"
@@ -114,7 +118,6 @@ export default function ExperienceItem({
           "
         >
           {/* Year + Current */}
-
           <div className="flex items-center justify-between gap-4">
             <span className="text-sm font-semibold text-primary">
               {item.year}
@@ -139,13 +142,12 @@ export default function ExperienceItem({
               >
                 <CheckCircle2 className="size-3.5" />
 
-                Current
+                {t("experience.current")}
               </span>
             )}
           </div>
 
           {/* Title */}
-
           <h3
             className="
               mt-4
@@ -156,23 +158,24 @@ export default function ExperienceItem({
               sm:text-2xl
             "
           >
-            {item.title}
+            {title}
           </h3>
 
           {/* Organization */}
-
           <p className="mt-1 text-sm font-medium text-muted-foreground">
-            {item.organization}
+            {t(
+              `experience.items.${item.id}.organization`,
+            )}
           </p>
 
           {/* Description */}
-
           <p className="mt-4 text-sm leading-7 text-muted-foreground">
-            {item.description}
+            {t(
+              `experience.items.${item.id}.description`,
+            )}
           </p>
 
           {/* Technologies */}
-
           <div className="mt-5 flex flex-wrap gap-2">
             {item.technologies.map((technology) => (
               <span

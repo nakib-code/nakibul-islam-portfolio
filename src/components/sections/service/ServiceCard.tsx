@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import TechBadge from "@/components/shared/TechBadge";
 import type { Service } from "@/data/services";
@@ -15,9 +16,11 @@ const cardVariants: Variants = {
     opacity: 0,
     y: 30,
   },
+
   visible: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.6,
       ease: "easeOut",
@@ -25,7 +28,11 @@ const cardVariants: Variants = {
   },
 };
 
-export default function ServiceCard({ service }: ServiceCardProps) {
+export default function ServiceCard({
+  service,
+}: ServiceCardProps) {
+  const { t } = useTranslation("common");
+
   const Icon = service.icon;
 
   return (
@@ -57,23 +64,27 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         {/* Content */}
         <div className="mt-7">
           <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">
-            {service.title}
+            {t(`services.items.${service.id}.title`)}
           </h3>
 
           <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
-            {service.description}
+            {t(
+              `services.items.${service.id}.description`,
+            )}
           </p>
         </div>
 
         {/* Technologies */}
         <div className="mt-7 border-t border-border pt-6">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            Technologies
+            {t("services.technologies")}
           </p>
 
           <div className="flex flex-wrap gap-2">
             {service.technologies.map((technology) => (
-              <TechBadge key={technology}>{technology}</TechBadge>
+              <TechBadge key={technology}>
+                {technology}
+              </TechBadge>
             ))}
           </div>
         </div>

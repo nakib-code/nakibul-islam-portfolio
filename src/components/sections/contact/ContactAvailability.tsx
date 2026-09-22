@@ -4,29 +4,29 @@ import { motion } from "framer-motion";
 import {
   BriefcaseBusiness,
   Globe2,
-  MessageCircle,
   MapPin,
+  MessageCircle,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const items = [
   {
+    id: "fullTime",
     icon: BriefcaseBusiness,
-    title: "Full-time",
-    description: "Open to developer opportunities",
   },
   {
+    id: "freelance",
     icon: MessageCircle,
-    title: "Freelance",
-    description: "Available for interesting projects",
   },
   {
+    id: "remote",
     icon: Globe2,
-    title: "Remote",
-    description: "Open to international collaboration",
   },
 ];
 
 export default function ContactAvailability() {
+  const { t } = useTranslation("common");
+
   return (
     <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card/60 p-6 shadow-sm backdrop-blur-xl sm:p-8">
       {/* Glow */}
@@ -40,18 +40,19 @@ export default function ContactAvailability() {
             <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
           </span>
 
-          AVAILABLE FOR WORK
+          {t("contact.availability.status")}
         </div>
 
         <h3 className="mt-6 font-heading text-2xl font-bold tracking-tight sm:text-3xl">
-          Let's work
+          {t("contact.availability.titleLineOne")}
           <br />
-          <span className="text-primary">together.</span>
+          <span className="text-primary">
+            {t("contact.availability.titleLineTwo")}
+          </span>
         </h3>
 
         <p className="mt-4 text-sm leading-7 text-muted-foreground">
-          I'm currently open to full-time opportunities, freelance projects,
-          and collaborations where I can build meaningful digital products.
+          {t("contact.availability.description")}
         </p>
 
         {/* Availability */}
@@ -61,7 +62,7 @@ export default function ContactAvailability() {
 
             return (
               <motion.div
-                key={item.title}
+                key={item.id}
                 initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -76,9 +77,12 @@ export default function ContactAvailability() {
                 </div>
 
                 <div>
-                  <p className="text-sm font-semibold">{item.title}</p>
+                  <p className="text-sm font-semibold">
+                    {t(`contact.availability.items.${item.id}.title`)}
+                  </p>
+
                   <p className="mt-0.5 text-xs text-muted-foreground">
-                    {item.description}
+                    {t(`contact.availability.items.${item.id}.description`)}
                   </p>
                 </div>
               </motion.div>
@@ -89,7 +93,8 @@ export default function ContactAvailability() {
         {/* Location */}
         <div className="mt-7 flex items-center gap-2 text-xs text-muted-foreground">
           <MapPin className="size-4 text-primary" />
-          Based in Bangladesh · Available worldwide
+
+          {t("contact.availability.location")}
         </div>
       </div>
     </div>
