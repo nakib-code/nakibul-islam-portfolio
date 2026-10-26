@@ -1,3 +1,32 @@
+export interface StoreProject {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  category: string;
+  price: number;
+  techStack: string[];
+  liveUrl: string;
+  imageUrl: string;
+  imagePublicId?: string;
+  whatsappMessage: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ProjectFormValues {
+  title: string;
+  slug: string;
+  description: string;
+  category: string;
+  price: string;
+  techStack: string;
+  liveUrl: string;
+  imageUrl: string;
+  imagePublicId: string;
+  whatsappMessage: string;
+}
+
 export type Project = {
   id: number;
 

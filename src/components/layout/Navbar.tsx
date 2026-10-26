@@ -20,33 +20,29 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <Container>
         <nav className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            aria-label="Nakibul Islam"
-            className="relative flex h-[64px] w-24 items-start overflow-hidden md:h-[70px] md:w-32"
-          >
-            <Image
-              src="/logo.png"
-              alt="Nakibul Islam"
-              width={150}
-              height={150}
-              priority
-              className="absolute left-0 top-0 h-auto w-24 max-w-none md:w-32"
-            />
-          </Link>
-
+<Link
+  href="/"
+  aria-label="Nakibul Islam"
+  className="relative flex h-[52px] w-[58px] items-start overflow-hidden rounded-md border-2 bg-background/50 md:h-[66px] md:w-[74px]"
+  style={{ borderColor: "#824CEA" }}
+>
+ <Image
+  src="/logo.png"
+  alt="Nakibul Islam"
+  width={150}
+  height={150}
+  priority
+  className="absolute -left-0.5 top-0 h-auto w-[58px] max-w-none scale-125 origin-top md:-left-0.5 md:w-[74px] md:scale-125"
+/>
+</Link>
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 md:flex">
             {navigationItems.map((item) => {
               const isSection = item.type === "section";
 
-              const sectionId = isSection
-                ? item.href.replace("#", "")
-                : "";
+              const sectionId = isSection ? item.href.replace("#", "") : "";
 
-              const isActive =
-                isSection && activeSection === sectionId;
+              const isActive = isSection && activeSection === sectionId;
 
               return (
                 <Link

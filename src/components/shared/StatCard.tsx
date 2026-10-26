@@ -34,13 +34,7 @@ export default function StatCard({
       }}
       className="
         group
-        rounded-3xl
-        border
-        border-border
-        bg-card/60
         p-6
-        backdrop-blur-xl
-        transition-all
         duration-300
         hover:border-primary/40
         hover:shadow-2xl

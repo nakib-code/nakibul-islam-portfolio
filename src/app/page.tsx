@@ -5,9 +5,7 @@ import Contact from "@/components/sections/contact/Contact";
 import Experience from "@/components/sections/experience/Experience";
 import Hero from "@/components/sections/hero/Hero";
 import Projects from "@/components/sections/project/Projects";
-import Services from "@/components/sections/service/Services";
 import Skills from "@/components/sections/skills/Skills";
-import WhyChooseMe from "@/components/sections/why-choose-me/WhyChooseMe";
 
 export default function HomePage() {
   return (
@@ -17,10 +15,8 @@ export default function HomePage() {
       <main>
         <Hero />
         <About />
-        <WhyChooseMe />
         <Skills />
         <Projects />
-        <Services />
         <Experience />
         <Contact />
       </main>

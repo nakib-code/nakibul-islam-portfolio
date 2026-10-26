@@ -51,7 +51,7 @@ export default function HeroContent() {
           <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
         </span>
 
-        {t("hero.badge")}
+        {t("hero.availableForWork")}
       </motion.div>
 
       {/* Greeting */}
@@ -62,13 +62,21 @@ export default function HeroContent() {
         {t("hero.greeting")}
       </motion.p>
 
-      {/* Heading */}
+      {/* Name */}
       <motion.h1
         variants={itemVariants}
         className="font-heading text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
       >
-        {t("hero.title")}
+        {t("hero.name")}
       </motion.h1>
+
+      {/* Title */}
+      <motion.p
+        variants={itemVariants}
+        className="mt-4 text-2xl font-semibold text-primary sm:text-3xl"
+      >
+        {t("hero.title")}
+      </motion.p>
 
       {/* Description */}
       <motion.p
