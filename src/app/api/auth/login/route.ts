@@ -1,19 +1,24 @@
 
 import { NextResponse } from "next/server";
 import { SignJWT } from "jose";
-import { cookies } from "next/headers";
+import { ADMIN_COOKIE_NAME } from "@/lib/require-admin";
+
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const body = await request.json();
+    const email =
+      typeof body.email === "string" ? body.email.trim() : "";
+    const password =
+      typeof body.password === "string" ? body.password : "";
 
-    // Validate required environment variables
     const adminEmail = process.env.ADMIN_EMAIL;
     const adminPassword = process.env.ADMIN_PASSWORD;
-    const jwtSecret = process.env.JWT_SECRET;
+    const secret = process.env.ADMIN_SESSION_SECRET;
 
-    if (!adminEmail || !adminPassword || !jwtSecret) {
-      console.error("Missing required admin authentication environment variables");
+    if (!adminEmail || !adminPassword || !secret) {
+      console.error("Admin authentication environment variables are missing.");
 
       return NextResponse.json(
         { success: false, message: "Server configuration error" },
@@ -21,7 +26,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate admin credentials
     if (email !== adminEmail || password !== adminPassword) {
       return NextResponse.json(
         { success: false, message: "Invalid email or password" },
@@ -29,20 +33,22 @@ export async function POST(request: Request) {
       );
     }
 
-    // Create JWT token (expires in 1 day)
-    const secretKey = new TextEncoder().encode(jwtSecret);
-
-    const token = await new SignJWT({ email })
+    const token = await new SignJWT({
+      email,
+      role: "admin",
+    })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
       .setExpirationTime("1d")
-      .sign(secretKey);
+      .sign(new TextEncoder().encode(secret));
 
-    // Set authentication cookie
-    const cookieStore = await cookies();
+    const response = NextResponse.json({
+      success: true,
+      message: "Logged in successfully",
+    });
 
-    cookieStore.set({
-      name: "admin_token",
+    response.cookies.set({
+      name: ADMIN_COOKIE_NAME,
       value: token,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -51,15 +57,12 @@ export async function POST(request: Request) {
       path: "/",
     });
 
-    return NextResponse.json({
-      success: true,
-      message: "Logged in successfully",
-    });
+    return response;
   } catch (error) {
-    console.error("Login error:", error);
+    console.error("Admin login error:", error);
 
     return NextResponse.json(
-      { success: false, message: "Internal Server Error" },
+      { success: false, message: "Internal server error" },
       { status: 500 }
     );
   }

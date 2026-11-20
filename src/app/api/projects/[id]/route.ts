@@ -18,8 +18,11 @@ const ALLOWED_FIELDS = [
   "description",
   "category",
   "price",
+  "salePrice",
   "techStack",
   "liveUrl",
+  "downloadFileName",
+  "features",
   "whatsappMessage",
 ] as const;
 
@@ -148,6 +151,32 @@ export async function PATCH(request: NextRequest, context: Context) {
           .map((item: string) => item.trim())
           .filter(Boolean);
 
+        continue;
+      }
+
+      if (field === "salePrice") {
+        if (value === null || value === "") {
+          project.salePrice = undefined;
+        } else if (Number.isFinite(Number(value)) && Number(value) >= 0) {
+          project.salePrice = Number(value);
+        }
+        continue;
+      }
+
+      if (field === "features") {
+        const featArray = Array.isArray(value)
+          ? value
+          : typeof value === "string"
+            ? value.split(",")
+            : [];
+        project.features = featArray
+          .map((item: unknown) => (typeof item === "string" ? item.trim() : ""))
+          .filter(Boolean);
+        continue;
+      }
+
+      if (field === "downloadFileName") {
+        project.downloadFileName = typeof value === "string" ? value.trim() : "";
         continue;
       }
 

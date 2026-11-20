@@ -11,7 +11,7 @@ const ALLOWED_TYPES = [
   "image/webp",
 ] as const;
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 type CloudinaryUploadResult = {
   secure_url: string;
@@ -34,9 +34,7 @@ function uploadToCloudinary(
         }
 
         if (!result?.secure_url || !result.public_id) {
-          reject(
-            new Error("Cloudinary returned an invalid upload result")
-          );
+          reject(new Error("Invalid Cloudinary upload result"));
           return;
         }
 
@@ -53,7 +51,6 @@ function uploadToCloudinary(
 }
 
 export async function POST(request: NextRequest) {
-  // Verify that the current user is an admin.
   const denied = await requireAdmin(request);
 
   if (denied) {
@@ -64,33 +61,23 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const file = formData.get("file");
 
-    // Validate uploaded file.
     if (!(file instanceof File)) {
       return NextResponse.json(
-        {
-          success: false,
-          message: "Image file is required.",
-        },
+        { success: false, message: "Image file is required." },
         { status: 400 }
       );
     }
 
     if (file.size === 0) {
       return NextResponse.json(
-        {
-          success: false,
-          message: "The uploaded image is empty.",
-        },
+        { success: false, message: "The image file is empty." },
         { status: 400 }
       );
     }
 
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
-        {
-          success: false,
-          message: "Image size must not exceed 5 MB.",
-        },
+        { success: false, message: "Maximum image size is 5 MB." },
         { status: 413 }
       );
     }
@@ -109,11 +96,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Read the uploaded file.
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+    const buffer = Buffer.from(await file.arrayBuffer());
 
-    // Verify actual file signature, not only the MIME type.
     const isJpeg =
       buffer.length >= 3 &&
       buffer[0] === 0xff &&
@@ -149,7 +133,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Upload securely using server-side Cloudinary credentials.
     const uploaded = await uploadToCloudinary(buffer);
 
     return NextResponse.json(

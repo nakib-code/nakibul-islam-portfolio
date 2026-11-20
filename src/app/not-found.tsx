@@ -46,7 +46,7 @@ export default function NotFound() {
         </h2>
 
         <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-          The page you're looking for doesn't exist or may have been moved.
+          The page you&apos;re looking for doesn&apos;t exist or may have been moved.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

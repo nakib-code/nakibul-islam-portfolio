@@ -341,5 +341,22 @@
     "button": "Let's Talk",
     "role": "Full Stack Developer",
     "builtWith": "Built with"
+  },
+  "store": {
+    "title": "Digital Web Store",
+    "subtitle": "Production-ready website templates with manual bKash payment support.",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to Cart",
+    "inCart": "In Cart",
+    "buyNow": "Buy Now with bKash",
+    "cart": "Shopping Cart",
+    "checkout": "Checkout",
+    "bkashNumber": "bKash Number",
+    "transactionId": "Transaction ID (TrxID)",
+    "pendingVerification": "Pending Verification",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "myPurchases": "My Downloads",
+    "myOrders": "My Orders"
   }
 }

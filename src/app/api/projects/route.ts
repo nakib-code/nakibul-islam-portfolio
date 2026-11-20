@@ -4,6 +4,8 @@ import { connectDB } from "@/lib/mongodb";
 import Project from "@/models/Project";
 import { requireAdmin } from "@/lib/require-admin";
 
+export const runtime = "nodejs";
+
 export async function GET() {
   try {
     await connectDB();
@@ -20,7 +22,10 @@ export async function GET() {
     console.error("Fetch projects error:", error);
 
     return NextResponse.json(
-      { success: false, message: "Failed to fetch projects" },
+      {
+        success: false,
+        message: "Failed to fetch projects",
+      },
       { status: 500 }
     );
   }
@@ -28,9 +33,12 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const denied = await requireAdmin(request);
+
   if (denied) return denied;
 
   try {
+    await connectDB();
+
     const body = await request.json();
 
     const {
@@ -39,12 +47,17 @@ export async function POST(request: NextRequest) {
       description,
       category,
       price,
+      salePrice,
       techStack,
       liveUrl,
       imageUrl,
+      imagePublicId,
+      downloadFileName,
+      features,
       whatsappMessage,
     } = body;
 
+    // Validate required fields
     if (
       typeof title !== "string" ||
       !title.trim() ||
@@ -57,10 +70,16 @@ export async function POST(request: NextRequest) {
       !Number.isFinite(Number(price)) ||
       Number(price) < 0 ||
       typeof imageUrl !== "string" ||
-      !imageUrl.startsWith("https://")
+      !imageUrl.startsWith("https://") ||
+      typeof imagePublicId !== "string" ||
+      !imagePublicId.trim()
     ) {
       return NextResponse.json(
-        { success: false, message: "Please provide valid project details and an image URL" },
+        {
+          success: false,
+          message:
+            "Please provide valid project details, image URL, and Cloudinary image ID.",
+        },
         { status: 400 }
       );
     }
@@ -71,7 +90,10 @@ export async function POST(request: NextRequest) {
             typeof item === "string" && Boolean(item.trim())
         )
       : typeof techStack === "string"
-        ? techStack.split(",").map((item: string) => item.trim()).filter(Boolean)
+        ? techStack
+            .split(",")
+            .map((item: string) => item.trim())
+            .filter(Boolean)
         : [];
 
     const newProject = await Project.create({
@@ -80,15 +102,27 @@ export async function POST(request: NextRequest) {
       description: description.trim(),
       category: category.trim(),
       price: Number(price),
+      salePrice: Number.isFinite(Number(salePrice)) ? Number(salePrice) : null,
       techStack: techArray,
       liveUrl: typeof liveUrl === "string" ? liveUrl.trim() : "",
-      imageUrl,
+      imageUrl: imageUrl.trim(),
+      imagePublicId: imagePublicId.trim(),
+      downloadFileName: typeof downloadFileName === "string" ? downloadFileName.trim() : "",
+      features: Array.isArray(features)
+        ? features.filter((f: unknown): f is string => typeof f === "string" && Boolean(f.trim()))
+        : [],
       whatsappMessage:
-        typeof whatsappMessage === "string" ? whatsappMessage.trim() : "",
+        typeof whatsappMessage === "string"
+          ? whatsappMessage.trim()
+          : "",
     });
 
     return NextResponse.json(
-      { success: true, data: newProject },
+      {
+        success: true,
+        message: "Project created successfully.",
+        data: newProject,
+      },
       { status: 201 }
     );
   } catch (error: unknown) {
@@ -96,7 +130,10 @@ export async function POST(request: NextRequest) {
 
     if (mongoError.code === 11000) {
       return NextResponse.json(
-        { success: false, message: "This project slug already exists" },
+        {
+          success: false,
+          message: "This project slug already exists.",
+        },
         { status: 409 }
       );
     }
@@ -104,7 +141,10 @@ export async function POST(request: NextRequest) {
     console.error("Create project error:", error);
 
     return NextResponse.json(
-      { success: false, message: "Failed to create project" },
+      {
+        success: false,
+        message: "Failed to create project.",
+      },
       { status: 500 }
     );
   }

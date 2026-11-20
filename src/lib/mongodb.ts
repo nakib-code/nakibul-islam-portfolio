@@ -5,9 +5,6 @@ const MONGODB_URI: string = process.env.MONGODB_URI!;
 if (!MONGODB_URI) {
   throw new Error("Please define MONGODB_URI in .env.local");
 }
-if (!MONGODB_URI) {
-  throw new Error("Please define MONGODB_URI in .env.local");
-}
 
 type MongooseCache = {
   conn: typeof mongoose | null;
@@ -15,7 +12,6 @@ type MongooseCache = {
 };
 
 declare global {
-  // eslint-disable-next-line no-var
   var mongooseCache: MongooseCache | undefined;
 }
 

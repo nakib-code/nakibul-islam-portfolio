@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { ArrowLeft, ImagePlus, LoaderCircle, Save, UploadCloud } from "lucide-react";
 import { ProjectFormValues, StoreProject } from "@/type/project";
@@ -13,12 +14,34 @@ const emptyForm: ProjectFormValues = {
   description: "",
   category: "E-commerce",
   price: "",
+  salePrice: "",
   techStack: "Next.js, TypeScript, Tailwind CSS",
   liveUrl: "",
   imageUrl: "",
   imagePublicId: "",
+  downloadFileName: "",
+  features: "",
   whatsappMessage: "Hi, I'm interested in this website template.",
 };
+
+function getInitialForm(project?: StoreProject): ProjectFormValues {
+  if (!project) return emptyForm;
+  return {
+    title: project.title ?? "",
+    slug: project.slug ?? "",
+    description: project.description ?? "",
+    category: project.category ?? "Other",
+    price: String(project.price ?? ""),
+    salePrice: typeof project.salePrice === "number" ? String(project.salePrice) : "",
+    techStack: Array.isArray(project.techStack) ? project.techStack.join(", ") : "",
+    liveUrl: project.liveUrl ?? "",
+    imageUrl: project.imageUrl ?? "",
+    imagePublicId: project.imagePublicId ?? "",
+    downloadFileName: project.downloadFileName ?? "",
+    features: Array.isArray(project.features) ? project.features.join(", ") : "",
+    whatsappMessage: project.whatsappMessage ?? "Hi, I'm interested in this website template.",
+  };
+}
 
 const inputClass =
   "w-full rounded-xl border border-white/10 bg-[#11131b] px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20";
@@ -29,38 +52,27 @@ type Props = {
 };
 
 export default function ProjectForm({ mode, project }: Props) {
-  const [form, setForm] = useState<ProjectFormValues>(emptyForm);
+  const router = useRouter();
+  const [prevProject, setPrevProject] = useState(project);
+  const [form, setForm] = useState<ProjectFormValues>(() => getInitialForm(project));
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [localPreview, setLocalPreview] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
 
-  useEffect(() => {
-    if (!project) return;
-    setForm({
-      title: project.title ?? "",
-      slug: project.slug ?? "",
-      description: project.description ?? "",
-      category: project.category ?? "Other",
-      price: String(project.price ?? ""),
-      techStack: Array.isArray(project.techStack) ? project.techStack.join(", ") : "",
-      liveUrl: project.liveUrl ?? "",
-      imageUrl: project.imageUrl ?? "",
-      imagePublicId: project.imagePublicId ?? "",
-      whatsappMessage: project.whatsappMessage ?? "Hi, I'm interested in this website template.",
-    });
-  }, [project]);
+  if (project !== prevProject) {
+    setPrevProject(project);
+    setForm(getInitialForm(project));
+  }
 
   useEffect(() => {
-    if (!imageFile) {
-      setLocalPreview("");
-      return;
-    }
-    const url = URL.createObjectURL(imageFile);
-    setLocalPreview(url);
-    return () => URL.revokeObjectURL(url);
-  }, [imageFile]);
+    return () => {
+      if (localPreview) {
+        URL.revokeObjectURL(localPreview);
+      }
+    };
+  }, [localPreview]);
 
   const updateField = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -76,6 +88,12 @@ export default function ProjectForm({ mode, project }: Props) {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
     setError("");
+
+    if (localPreview) {
+      URL.revokeObjectURL(localPreview);
+      setLocalPreview("");
+    }
+
     if (!file) {
       setImageFile(null);
       return;
@@ -84,14 +102,17 @@ export default function ProjectForm({ mode, project }: Props) {
     if (!allowed.includes(file.type)) {
       setError("Please choose a JPG, PNG, or WebP image.");
       e.target.value = "";
+      setImageFile(null);
       return;
     }
     if (file.size > 5 * 1024 * 1024) {
       setError("Image size must be 5 MB or less.");
       e.target.value = "";
+      setImageFile(null);
       return;
     }
     setImageFile(file);
+    setLocalPreview(URL.createObjectURL(file));
   };
 
   const uploadImage = async () => {
@@ -134,10 +155,13 @@ export default function ProjectForm({ mode, project }: Props) {
         description: form.description.trim(),
         category: form.category,
         price: Number(form.price),
+        salePrice: form.salePrice ? Number(form.salePrice) : null,
         techStack: form.techStack.split(",").map((item) => item.trim()).filter(Boolean),
         liveUrl: form.liveUrl.trim(),
         imageUrl: uploadedImage.imageUrl,
         imagePublicId: uploadedImage.imagePublicId,
+        downloadFileName: form.downloadFileName?.trim() || "",
+        features: form.features ? form.features.split(",").map((f) => f.trim()).filter(Boolean) : [],
         whatsappMessage: form.whatsappMessage.trim(),
       };
 
@@ -163,10 +187,14 @@ export default function ProjectForm({ mode, project }: Props) {
       if (mode === "create") {
         setForm(emptyForm);
         setImageFile(null);
+        if (localPreview) {
+          URL.revokeObjectURL(localPreview);
+          setLocalPreview("");
+        }
         const fileInput = document.getElementById("project-image") as HTMLInputElement | null;
         if (fileInput) fileInput.value = "";
       }
-      window.location.assign("/admin/dashboard");
+      router.push("/admin/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -212,8 +240,20 @@ export default function ProjectForm({ mode, project }: Props) {
                 {categories.map((category) => <option key={category} value={category}>{category}</option>)}
               </select>
             </Field>
-            <Field label="Price (USD)">
+            <Field label="Regular Price (USD) *">
               <input type="number" name="price" value={form.price} onChange={updateField} required min="0" step="0.01" className={inputClass} placeholder="99" />
+            </Field>
+            <Field label="Sale / Discount Price (USD, optional)">
+              <input type="number" name="salePrice" value={form.salePrice ?? ""} onChange={updateField} min="0" step="0.01" className={inputClass} placeholder="Leave empty if no discount" />
+            </Field>
+          </section>
+
+          <section className="grid gap-5 sm:grid-cols-2">
+            <Field label="Private Download File Name (in storage/downloads/)">
+              <input name="downloadFileName" value={form.downloadFileName ?? ""} onChange={updateField} className={inputClass} placeholder="e.g. ecommerce-starter.zip" />
+            </Field>
+            <Field label="Key Features (comma-separated)">
+              <input name="features" value={form.features ?? ""} onChange={updateField} className={inputClass} placeholder="Authentication, Stripe, Admin Panel, Next.js 16" />
             </Field>
           </section>
 

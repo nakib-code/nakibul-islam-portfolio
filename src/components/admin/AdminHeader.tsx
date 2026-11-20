@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Bell, LogOut, Menu } from "lucide-react";
 
 type AdminHeaderProps = {
@@ -12,30 +12,36 @@ export default function AdminHeader({
   onMenuClick,
 }: AdminHeaderProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
 
   const pageTitle = pathname.includes("/projects/new")
     ? "Add Website"
     : pathname.includes("/edit")
       ? "Edit Website"
-      : "Dashboard";
+      : pathname === "/admin/dashboard"
+        ? "Dashboard"
+        : "Admin Panel";
 
   const handleLogout = async () => {
-    try {
-      setLoggingOut(true);
+    if (loggingOut) return;
 
+    setLoggingOut(true);
+
+    try {
       const response = await fetch("/api/auth/logout", {
         method: "POST",
+        credentials: "same-origin",
+        cache: "no-store",
       });
 
       if (!response.ok) {
-        throw new Error("Logout failed");
+        throw new Error("Logout request failed");
       }
 
-      router.replace("/auth/login");
-      router.refresh();
-    } catch {
+      // Navigate away from the protected admin area.
+      window.location.replace("/auth/login");
+    } catch (error) {
+      console.error("Logout error:", error);
       setLoggingOut(false);
       window.alert("Could not log out. Please try again.");
     }
@@ -57,6 +63,7 @@ export default function AdminHeader({
           <h1 className="text-sm font-semibold text-white sm:text-base">
             {pageTitle}
           </h1>
+
           <p className="mt-1 hidden text-xs text-gray-500 sm:block">
             Manage your digital business
           </p>
@@ -69,7 +76,9 @@ export default function AdminHeader({
           title="Admin status"
         >
           <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          <span className="text-xs text-gray-400">Administrator</span>
+          <span className="text-xs text-gray-400">
+            Administrator
+          </span>
         </div>
 
         <button
@@ -85,10 +94,12 @@ export default function AdminHeader({
           type="button"
           onClick={handleLogout}
           disabled={loggingOut}
-          className="inline-flex items-center gap-2 rounded-lg bg-red-500/10 px-3 py-2 text-xs font-medium text-red-300 transition hover:bg-red-500/20 disabled:opacity-50 sm:text-sm"
+          className="inline-flex items-center gap-2 rounded-lg bg-red-500/10 px-3 py-2 text-xs font-medium text-red-300 transition hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm"
         >
           <LogOut size={16} />
-          <span>{loggingOut ? "Logging out..." : "Logout"}</span>
+          <span>
+            {loggingOut ? "Logging out..." : "Logout"}
+          </span>
         </button>
       </div>
     </header>

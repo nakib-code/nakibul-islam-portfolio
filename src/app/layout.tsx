@@ -10,6 +10,7 @@ import ThemeProvider from "@/components/providers/ThemeProvider";
 import ScrollProgress from "@/components/shared/ScrollProgress";
 import BackToTop from "@/components/shared/BackToTop";
 import I18nProvider from "@/providers/I18nProvider";
+import { CartProvider } from "@/context/CartContext";
 import DeveloperSignalField from "@/components/background/DeveloperSignalField";
 
 const inter = Inter({
@@ -167,9 +168,11 @@ export default function RootLayout({
           <ScrollProgress />
 
           <I18nProvider>
-            <div className="relative z-10">
-              {children}
-            </div>
+            <CartProvider>
+              <div className="relative z-10">
+                {children}
+              </div>
+            </CartProvider>
           </I18nProvider>
 
           <BackToTop />

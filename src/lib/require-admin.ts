@@ -21,8 +21,14 @@ export async function requireAdmin(request: NextRequest) {
       new TextEncoder().encode(secret)
     );
 
-    if (payload.role !== "admin") {
-      throw new Error("Invalid role");
+    if (
+      typeof payload.email !== "string" ||
+      payload.role !== "admin"
+    ) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
     }
 
     return null;

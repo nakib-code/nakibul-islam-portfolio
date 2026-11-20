@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { ArrowDownRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import Container from "@/components/layout/Container";

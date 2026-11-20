@@ -191,7 +191,6 @@ export default function DeveloperSignalField() {
     let bursts: Burst[] = [];
 
     let lastSection: Section = "hero";
-    let lastTheme: "dark" | "light" = "dark";
 
     const sectionRef = {
       current: "hero" as Section,
@@ -305,7 +304,7 @@ export default function DeveloperSignalField() {
 
       for (let i = 0; i < maxNodes; i++) {
         let x = Math.random() * width;
-        let y = Math.random() * height;
+        const y = Math.random() * height;
 
         // Keep Hero text area calmer.
         if (sectionRef.current === "hero") {
