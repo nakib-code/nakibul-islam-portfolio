@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
       description: description.trim(),
       category: category.trim(),
       price: Number(price),
-      salePrice: Number.isFinite(Number(salePrice)) ? Number(salePrice) : null,
+      salePrice: Number.isFinite(Number(salePrice)) ? Number(salePrice) : undefined,
       techStack: techArray,
       liveUrl: typeof liveUrl === "string" ? liveUrl.trim() : "",
       imageUrl: imageUrl.trim(),

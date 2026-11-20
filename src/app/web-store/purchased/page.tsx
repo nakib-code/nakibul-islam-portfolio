@@ -1,14 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
-  CheckCircle2,
-  Clock,
   Download,
   ExternalLink,
   Layers3,
@@ -16,7 +13,6 @@ import {
   Lock,
   RefreshCw,
   ShieldCheck,
-  User,
 } from "lucide-react";
 
 interface PurchasedItem {
@@ -85,7 +81,53 @@ export default function CustomerPurchasedPage() {
   };
 
   useEffect(() => {
-    void fetchPurchases();
+    let cancelled = false;
+
+    const load = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const url = orderId
+          ? `/api/customer/purchases?orderId=${encodeURIComponent(orderId)}`
+          : `/api/customer/purchases`;
+
+        const [purchasesRes, userRes] = await Promise.all([
+          fetch(url),
+          fetch("/api/customer/auth/me"),
+        ]);
+
+        const [purchasesData, userData] = await Promise.all([
+          purchasesRes.json(),
+          userRes.json(),
+        ]);
+
+        if (cancelled) return;
+
+        if (userData.success && userData.user) {
+          setCustomer(userData.user);
+        }
+
+        if (purchasesData.success && Array.isArray(purchasesData.data)) {
+          setItems(purchasesData.data);
+        } else if (!userData.user && !orderId) {
+          setError("Please sign in or provide an order link to view your purchased products.");
+        } else {
+          setError(purchasesData.message || "No approved purchases found.");
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load purchases.");
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
   }, [orderId]);
 
   return (

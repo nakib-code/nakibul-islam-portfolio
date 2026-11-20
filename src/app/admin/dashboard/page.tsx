@@ -64,46 +64,44 @@ export default function AdminDashboardPage() {
   }, []);
 
   useEffect(() => {
-    let ignore = false;
+  let cancelled = false;
 
-    async function loadInitial() {
-      try {
-        const [projRes, statsRes] = await Promise.all([
-          fetch("/api/projects", { cache: "no-store" }),
-          fetch("/api/admin/sales", { cache: "no-store" }),
-        ]);
+  const load = async () => {
+    try {
+      const [projRes, statsRes] = await Promise.all([
+        fetch("/api/projects", { cache: "no-store" }),
+        fetch("/api/admin/sales", { cache: "no-store" }),
+      ]);
 
-        const [projResult, statsResult] = await Promise.all([
-          projRes.json(),
-          statsRes.json(),
-        ]);
+      const [projResult, statsResult] = await Promise.all([
+        projRes.json(),
+        statsRes.json(),
+      ]);
 
-        if (ignore) return;
-        if (!projRes.ok || !projResult.success) {
-          throw new Error(projResult.message || "Could not load websites.");
-        }
-        setProjects(Array.isArray(projResult.data) ? projResult.data : []);
-
-        if (statsResult.success && statsResult.data) {
-          setSalesStats(statsResult.data);
-        }
-      } catch (err) {
-        if (!ignore) {
-          setError(err instanceof Error ? err.message : "Could not load websites.");
-        }
-      } finally {
-        if (!ignore) {
-          setLoading(false);
-        }
+      if (cancelled) return;
+      if (!projRes.ok || !projResult.success) {
+        throw new Error(projResult.message || "Could not load websites.");
       }
+      setProjects(Array.isArray(projResult.data) ? projResult.data : []);
+
+      if (statsResult.success && statsResult.data) {
+        setSalesStats(statsResult.data);
+      }
+    } catch (err) {
+      if (!cancelled) {
+        setError(err instanceof Error ? err.message : "Could not load websites.");
+      }
+    } finally {
+      if (!cancelled) setLoading(false);
     }
+  };
 
-    void loadInitial();
+  load();
 
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   const filteredProjects = useMemo(() => {
     const query = search.trim().toLowerCase();

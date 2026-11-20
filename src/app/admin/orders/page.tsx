@@ -7,7 +7,6 @@ import {
   RefreshCw,
   LoaderCircle,
   ExternalLink,
-  ShoppingCart,
   Eye,
   CheckCircle,
   Clock,
@@ -38,8 +37,30 @@ export default function AdminOrdersPage() {
   };
 
   useEffect(() => {
-    void fetchOrders();
-  }, []);
+  let cancelled = false;
+
+  const load = async () => {
+    try {
+      const res = await fetch("/api/admin/orders", { cache: "no-store" });
+      const data = await res.json();
+      if (!cancelled && res.ok && data.success) {
+        setOrders(Array.isArray(data.data) ? data.data : []);
+      } else if (!cancelled) {
+        console.error(data.message || "Failed to load orders.");
+      }
+    } catch (err) {
+      if (!cancelled) console.error(err);
+    } finally {
+      if (!cancelled) setLoading(false);
+    }
+  };
+
+  load();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   const filteredOrders = useMemo(() => {
     return orders.filter((order) => {

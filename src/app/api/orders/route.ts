@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
         name: customer.name.trim(),
         email: customer.email.trim().toLowerCase(),
         phone: customer.phone.trim(),
-        userId: userId || null,
+        userId: userId || undefined,
       },
       items: orderItems,
       totalAmount: totalUsd,

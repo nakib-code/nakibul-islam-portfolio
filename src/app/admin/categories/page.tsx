@@ -29,28 +29,28 @@ export default function AdminCategoriesPage() {
   };
 
   useEffect(() => {
-    let ignore = false;
+  let cancelled = false;
 
-    async function loadInitial() {
-      try {
-        const res = await fetch("/api/admin/categories");
-        const data = await res.json();
-        if (!ignore && data.success && Array.isArray(data.data)) {
-          setCategories(data.data);
-        }
-      } catch (err) {
-        console.error("Failed to load initial categories:", err);
-      } finally {
-        if (!ignore) setLoading(false);
+  const load = async () => {
+    try {
+      const res = await fetch("/api/admin/categories");
+      const data = await res.json();
+      if (!cancelled && data.success && Array.isArray(data.data)) {
+        setCategories(data.data);
       }
+    } catch (err) {
+      console.error("Failed to load categories:", err);
+    } finally {
+      if (!cancelled) setLoading(false);
     }
+  };
 
-    void loadInitial();
+  load();
 
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();

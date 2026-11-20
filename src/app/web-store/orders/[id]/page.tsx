@@ -3,19 +3,15 @@
 import { use, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
-  AlertCircle,
   ArrowLeft,
   CheckCircle2,
   Clock,
   Download,
-  ExternalLink,
   LoaderCircle,
+  Lock,
   RefreshCw,
-  ShieldCheck,
   XCircle,
-  Zap,
 } from "lucide-react";
 import { IOrder, IPayment } from "@/type/store";
 
@@ -58,7 +54,34 @@ export default function OrderDetailsPage({
   };
 
   useEffect(() => {
-    void loadOrder();
+    let cancelled = false;
+
+    const load = async () => {
+      try {
+        const res = await fetch(`/api/orders/${id}`, { cache: "no-store" });
+        const data = await res.json();
+        if (cancelled) return;
+        if (!res.ok || !data.success || !data.data) {
+          throw new Error(data.message || "Order not found.");
+        }
+        setOrder(data.data);
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load order.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+          setRefreshing(false);
+        }
+      }
+    };
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
   }, [id]);
 
   const handleResubmit = async (e: React.FormEvent) => {

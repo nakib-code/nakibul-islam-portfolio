@@ -7,8 +7,6 @@ import {
   ArrowLeft,
   CheckCircle2,
   Clock,
-  ExternalLink,
-  Layers3,
   LoaderCircle,
   RefreshCw,
   ShoppingCart,
@@ -53,7 +51,47 @@ export default function CustomerOrdersHistoryPage() {
   };
 
   useEffect(() => {
-    void fetchOrders();
+    let cancelled = false;
+
+    const load = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const [ordersRes, userRes] = await Promise.all([
+          fetch("/api/orders"),
+          fetch("/api/customer/auth/me"),
+        ]);
+
+        const [ordersData, userData] = await Promise.all([
+          ordersRes.json(),
+          userRes.json(),
+        ]);
+
+        if (cancelled) return;
+
+        if (userData.success && userData.user) {
+          setUser(userData.user);
+        }
+
+        if (ordersData.success && Array.isArray(ordersData.data)) {
+          setOrders(ordersData.data);
+        } else if (!userData.user) {
+          setError("Please sign in to view your complete order history.");
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load orders.");
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

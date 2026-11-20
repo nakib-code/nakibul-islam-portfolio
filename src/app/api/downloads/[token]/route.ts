@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
-import path from "path";
 import { connectDB } from "@/lib/mongodb";
 import Download from "@/models/Download";
 import Order from "@/models/Order";
 import Product from "@/models/Product";
-import { DOWNLOADS_DIR, getPrivateFilePath } from "@/lib/storage";
+import { getPrivateFilePath } from "@/lib/storage";
 
 export const runtime = "nodejs";
 

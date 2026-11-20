@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {
   Save,
   LoaderCircle,
-  Sliders,
   CheckCircle2,
   AlertCircle,
   CreditCard,

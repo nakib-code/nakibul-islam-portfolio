@@ -8,8 +8,6 @@ import {
   Search,
   RefreshCw,
   LoaderCircle,
-  CreditCard,
-  AlertCircle,
   ExternalLink,
 } from "lucide-react";
 import { IPayment } from "@/type/store";
@@ -45,8 +43,32 @@ export default function AdminPaymentsPage() {
   };
 
   useEffect(() => {
-    void fetchPayments();
-  }, []);
+  let cancelled = false;
+
+  const load = async () => {
+    try {
+      const res = await fetch("/api/admin/payments", { cache: "no-store" });
+      const data = await res.json();
+      if (!cancelled && res.ok && data.success) {
+        setPayments(Array.isArray(data.data) ? data.data : []);
+      } else if (!cancelled) {
+        setActionError(data.message || "Failed to load payments.");
+      }
+    } catch (err) {
+      if (!cancelled) {
+        setActionError(err instanceof Error ? err.message : "Error fetching payments.");
+      }
+    } finally {
+      if (!cancelled) setLoading(false);
+    }
+  };
+
+  load();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   const filteredPayments = useMemo(() => {
     return payments.filter((item) => {
